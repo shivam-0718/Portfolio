@@ -1,0 +1,46 @@
+/* ===== TOKENS ===== */
+:root {
+  --bg: #fafaf8;
+  --surface: #f0efeb;
+  --text: #1a1a1a;
+  --text-muted: #888888;
+  --border: #e8e8e3;
+  --link: #4a7fa5;
+  --link-hover: #1a1a1a;
+  --max-width: 680px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5, h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: var(--link);
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+::selection {
+  background: #c8daea;
+  color: var(--text);
+}
