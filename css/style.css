@@ -118,7 +118,7 @@ a:hover {
 .page-layout {
   display: grid;
   grid-template-columns: 110px 1fr;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0;
   padding: 3rem 2rem 3rem 4rem;
   min-height: 100vh;
@@ -134,7 +134,6 @@ a:hover {
 .main-content {
   border-left: 1px solid var(--border);
   padding-left: 2.5rem;
-  max-width: 560px;
 }
 
 section {
@@ -213,25 +212,34 @@ section.section-active {
 }
 
 /* ===== ABOUT ===== */
+#about.section-active {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
 .about-content {
-  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+
+.about-image-col {
+  flex-shrink: 0;
 }
 
 .profile-image {
-  float: right;
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: 2.5rem;
-  margin-bottom: 1rem;
   background: var(--surface);
   filter: grayscale(10%);
   border: 1px solid var(--border);
+  display: block;
 }
 
 .intro-name {
-  font-size: 1.1rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text);
@@ -460,9 +468,11 @@ section.section-active {
     max-width: 100%;
   }
 
-  .profile-image {
-    float: none;
-    display: block;
-    margin: 0 auto 1.5rem auto;
+  #about.section-active {
+    flex-direction: column;
+  }
+
+  .about-image-col {
+    align-self: center;
   }
 }
