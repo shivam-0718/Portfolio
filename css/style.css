@@ -310,3 +310,148 @@ section.section-active {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* ===== BLOGS ===== */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.blog-title {
+  font-size: 0.9rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.blog-title:hover {
+  color: var(--link);
+}
+
+.blog-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border);
+  margin-bottom: 3px;
+  min-width: 1rem;
+}
+
+.blog-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== CONNECT ===== */
+.connect-intro {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 50ch;
+}
+
+.contact-list {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.6rem 1rem;
+  align-items: baseline;
+}
+
+.contact-list dt {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.contact-list dd {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ===== SOCIAL LINKS ===== */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.social-link svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.social-link:hover {
+  color: var(--text);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .page-layout {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1.25rem;
+    padding-top: 4rem;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    z-index: 999;
+    padding: 2rem 1.5rem;
+    transition: left 0.25s ease;
+    overflow-y: auto;
+  }
+
+  body.sidebar-open .sidebar {
+    left: 0;
+  }
+
+  body.sidebar-open::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+  }
+
+  .main-content {
+    border-left: none;
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .profile-image {
+    float: none;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+  }
+}
