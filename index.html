@@ -1,164 +1,293 @@
- <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Shivam Vyas - My Portfolio</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="/css/style.css" />
-      <script src="/js/script.js"></script>
-    </head>
-    <body>
-
-      <!-- Loader -->
-      <div class="loader-wrapper">
-        <div class="loader">
-          <div class="loader-text">S.V.</div>
-          <div class="loader-circle"></div>
-          <div class="loader-circle"></div>
-          <div class="loader-circle"></div>
-        </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shivam Vyas - My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/script.js"></script>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+      <div class="loader">
+        <div class="loader-text">S.V.</div>
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
       </div>
+    </div>
 
-      <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation">
-        &#9776;
-      </button>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation">
+      &#9776;
+    </button>
 
-      <div class="page-layout">
-        <aside class="sidebar">
-          <div class="sidebar-inner">
-            <nav class="sidebar-nav">
-              <ul>
-                <li><a href="#about"      class="nav-link" data-section="about">About me</a></li>
-                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-                <li><a href="#projects"   class="nav-link" data-section="projects">Projects</a></li>
-                <li><a href="#connect"    class="nav-link" data-section="connect">Connect</a></li>
-              </ul>
-            </nav>
-          </div>
-        </aside>
-
-        <main class="main-content">
-
-          <section id="about">
-            <div class="about-content">
-              <img
-                src="/images/profile.jpg"
-                alt="Shivam Vyas"
-                class="profile-image"
-                onerror="this.style.display='none'"
-              />
-              <h1 class="intro-name">Shivam Vyas</h1>
-              <p>
-                I am a passionate backend developer with a strong foundation in
-                building scalable and efficient web applications. My work
-                primarily revolves around designing robust APIs, implementing
-                microservices architectures, and ensuring seamless integration
-                between systems. I enjoy turning complex problems into simple,
-                reliable solutions that perform well in real-world scenarios.
-              </p>
-              <p>
-                Over time, I've worked extensively with modern technologies,
-                focusing on clean code practices, performance optimization, and
-                maintainable system design. Whether it's developing RESTful
-                services or structuring backend systems for large-scale
-                applications, I aim to create solutions that are both technically
-                sound and user-focused.
-              </p>
-              <p>
-                Beyond coding, I am constantly learning and exploring new tools
-                and frameworks to stay ahead in the evolving tech landscape. I
-                believe in continuous improvement, collaboration, and building
-                projects that not only solve problems but also deliver meaningful
-                impact.
-              </p>
-            </div>
-          </section>
-
-          <section id="experience">
-            <h2 class="section-heading">Experience</h2>
-            <div class="experience-list">
-              <div>
-                <p class="exp-role-line">Senior Software Engineer</p>
-                <p class="exp-company">Techwave Infotech Private Limited &middot; Nov 2025 – Present</p>
-                <ul class="exp-desc exp-bullets">
-                  <li>Leading backend development for microservices-based financial systems.</li>
-                  <li>Designed and implemented REST APIs serving 100K+ daily requests.</li>
-                  <li>Improved average response time by 40% through query optimization and caching strategies.</li>
-                </ul>
-              </div>
-              <div>
-                <p class="exp-role-line">Senior Systems Engineer</p>
-                <p class="exp-company">Infosys Limited &middot; Nov 2022 – Oct 2025</p>
-                <ul class="exp-desc exp-bullets">
-                  <li>Conducted comprehensive security audits, vulnerability assessments, and patch management to strengthen organizational IT system
-  security.</li>
-                  <li>Resolved complex technical issues while ensuring adherence to quality standards across enterprise development environments.</li>
-                  <li>Designed and implemented secure, scalable RESTful APIs aligning with client requirements and enhancing backend efficiency.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="projects">
-            <h2 class="section-heading">Projects</h2>
-            <p class="projects-intro">My other mini projects
-              (find all of them on <a href="https://github.com/shivam-0718" target="_blank" class="inline-link">GitHub</a>):
-            </p>
-            <ul class="project-list">
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Spring Boot REST API Template</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Microservice Demo App</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Portfolio Website (this site)</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">JWT Auth Service</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Query Optimizer Benchmark</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Event-Driven Order System</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Spring Security OAuth2 Starter</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Distributed Rate Limiter</a></li>
-              <li><a href="https://github.com/shivam-0718" target="_blank" class="project-link">Redis Cache Layer Demo</a></li>
+    <div class="page-layout">
+      <aside class="sidebar">
+        <div class="sidebar-inner">
+          <nav class="sidebar-nav">
+            <ul>
+              <li>
+                <a href="#about" class="nav-link" data-section="about"
+                  >About me</a
+                >
+              </li>
+              <li>
+                <a href="#experience" class="nav-link" data-section="experience"
+                  >Experience</a
+                >
+              </li>
+              <li>
+                <a href="#projects" class="nav-link" data-section="projects"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a href="#connect" class="nav-link" data-section="connect"
+                  >Connect</a
+                >
+              </li>
             </ul>
-          </section>
+          </nav>
+        </div>
+      </aside>
 
-          <section id="connect">
-            <h2 class="section-heading">Connect</h2>
-            <p class="connect-intro">The best way to reach me is by email.
-              I'm open to interesting conversations about backend architecture,
-              system design, or AI/ML mathematics.</p>
-            <dl class="contact-list">
-              <dt>Email</dt>
-              <dd><a href="mailto:shivam.vyas.1807@gmail.com" class="inline-link">shivam.vyas.1807@gmail.com</a></dd>
-              <dt>Location</dt>
-              <dd>Mumbai, India</dd>
-            </dl>
-            <div class="social-links">
-              <a href="https://linkedin.com/in/shivam-vyas-1807" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136
+      <main class="main-content">
+        <section id="about">
+          <div class="about-content">
+            <h1 class="intro-name">Shivam Vyas</h1>
+            <p>
+              I am a passionate backend developer with a strong foundation in
+              building scalable and efficient web applications. My work
+              primarily revolves around designing robust APIs, implementing
+              microservices architectures, and ensuring seamless integration
+              between systems. I enjoy turning complex problems into simple,
+              reliable solutions that perform well in real-world scenarios.
+            </p>
+            <p>
+              Over time, I've worked extensively with modern technologies,
+              focusing on clean code practices, performance optimization, and
+              maintainable system design. Whether it's developing RESTful
+              services or structuring backend systems for large-scale
+              applications, I aim to create solutions that are both technically
+              sound and user-focused.
+            </p>
+            <p>
+              Beyond coding, I am constantly learning and exploring new tools
+              and frameworks to stay ahead in the evolving tech landscape. I
+              believe in continuous improvement, collaboration, and building
+              projects that not only solve problems but also deliver meaningful
+              impact.
+            </p>
+          </div>
+          <div class="about-image-col">
+            <img
+              src="/images/profile.jpg"
+              alt="Shivam Vyas"
+              class="profile-image"
+              onerror="this.style.display = 'none'"
+            />
+          </div>
+        </section>
+
+        <section id="experience">
+          <h2 class="section-heading">Experience</h2>
+          <div class="experience-list">
+            <div>
+              <p class="exp-role-line">Senior Software Engineer</p>
+              <p class="exp-company">
+                Techwave Infotech Private Limited &middot; Nov 2025 – Present
+              </p>
+              <ul class="exp-desc exp-bullets">
+                <li>
+                  Leading backend development for microservices-based financial
+                  systems.
+                </li>
+                <li>
+                  Designed and implemented REST APIs serving 100K+ daily
+                  requests.
+                </li>
+                <li>
+                  Improved average response time by 40% through query
+                  optimization and caching strategies.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="exp-role-line">Senior Systems Engineer</p>
+              <p class="exp-company">
+                Infosys Limited &middot; Nov 2022 – Oct 2025
+              </p>
+              <ul class="exp-desc exp-bullets">
+                <li>
+                  Conducted comprehensive security audits, vulnerability
+                  assessments, and patch management to strengthen organizational
+                  IT system security.
+                </li>
+                <li>
+                  Resolved complex technical issues while ensuring adherence to
+                  quality standards across enterprise development environments.
+                </li>
+                <li>
+                  Designed and implemented secure, scalable RESTful APIs
+                  aligning with client requirements and enhancing backend
+                  efficiency.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects">
+          <h2 class="section-heading">Projects</h2>
+          <p class="projects-intro">
+            My other mini projects (find all of them on
+            <a
+              href="https://github.com/shivam-0718"
+              target="_blank"
+              class="inline-link"
+              >GitHub</a
+            >):
+          </p>
+          <ul class="project-list">
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Spring Boot REST API Template</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Microservice Demo App</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Portfolio Website (this site)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >JWT Auth Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Query Optimizer Benchmark</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Event-Driven Order System</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Spring Security OAuth2 Starter</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Distributed Rate Limiter</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/shivam-0718"
+                target="_blank"
+                class="project-link"
+                >Redis Cache Layer Demo</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section id="connect">
+          <h2 class="section-heading">Connect</h2>
+          <p class="connect-intro">
+            The best way to reach me is by email. I'm open to interesting
+            conversations about backend architecture, system design, or AI/ML
+            mathematics.
+          </p>
+          <dl class="contact-list">
+            <dt>Email</dt>
+            <dd>
+              <a href="mailto:shivam.vyas.1807@gmail.com" class="inline-link"
+                >shivam.vyas.1807@gmail.com</a
+              >
+            </dd>
+            <dt>Location</dt>
+            <dd>Mumbai, India</dd>
+          </dl>
+          <div class="social-links">
+            <a
+              href="https://linkedin.com/in/shivam-vyas-1807"
+              class="social-link"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136
   2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065
   0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774
-  0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                LinkedIn
-              </a>
-              <a href="https://github.com/shivam-0718" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
+  0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/shivam-0718"
+              class="social-link"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
   0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838
   1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38
   1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645
   1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0
-  .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </section>
-
-        </main>
-      </div>
-    </body>
-  </html>
+  .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
