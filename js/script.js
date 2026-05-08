@@ -10,36 +10,33 @@ window.addEventListener('load', () => {
       }, 1500);
   });
 
-/* ===== SECTION NAVIGATION ===== */
-const navLinks = document.querySelectorAll('.nav-link');
-const allSections = document.querySelectorAll('section[id]');
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const allSections = document.querySelectorAll('section[id]');
 
-function showSection(sectionId) {
-    allSections.forEach(s => s.classList.remove('section-active'));
-    navLinks.forEach(l => l.classList.remove('active'));
+    function showSection(sectionId) {
+        allSections.forEach(s => s.classList.remove('section-active'));
+        navLinks.forEach(l => l.classList.remove('active'));
+        const target = document.getElementById(sectionId);
+        if (target) target.classList.add('section-active');
+        const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+        if (activeLink) activeLink.classList.add('active');
+    }
 
-    const target = document.getElementById(sectionId);
-    if (target) target.classList.add('section-active');
+    showSection('about');
 
-    const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
-    if (activeLink) activeLink.classList.add('active');
-}
-
-// Show about on load
-showSection('about');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection(link.dataset.section);
-        document.body.classList.remove('sidebar-open');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection(link.dataset.section);
+            document.body.classList.remove('sidebar-open');
+        });
     });
+
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            document.body.classList.toggle('sidebar-open');
+        });
+    }
 });
-
-/* ===== MOBILE HAMBURGER ===== */
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', () => {
-        document.body.classList.toggle('sidebar-open');
-    });
-}
