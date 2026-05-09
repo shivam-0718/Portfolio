@@ -18,6 +18,7 @@
 
 body {
   font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
+  font-style: italic;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -286,6 +287,8 @@ section.section-active {
 .exp-logo svg,
 .exp-logo img {
   display: block;
+  height: 22px;
+  width: auto;
 }
 
 .exp-role-line {
@@ -300,8 +303,8 @@ section.section-active {
 }
 
 .exp-desc {
-  font-size: 0.875rem;
-  color: #444444;
+  font-size: 0.95rem;
+  color: var(--text);
   line-height: 1.7;
 }
 
