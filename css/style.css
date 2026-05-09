@@ -301,13 +301,13 @@ section.section-active {
 }
 
 .inline-link {
-  color: var(--link);
+  color: var(--text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .inline-link:hover {
-  color: var(--link-hover);
+  color: var(--text-muted);
 }
 
 .project-list {

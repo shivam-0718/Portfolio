@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
     const allSections = document.querySelectorAll('section[id]');
 
-    function showSection(sectionId) {
+    window.showSection = function showSection(sectionId) {
         allSections.forEach(s => s.classList.remove('section-active'));
         navLinks.forEach(l => l.classList.remove('active'));
         const target = document.getElementById(sectionId);
