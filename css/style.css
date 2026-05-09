@@ -265,7 +265,27 @@ section.section-active {
 .experience-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
+}
+
+.exp-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-logo {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.exp-logo a {
+  display: block;
+  line-height: 0;
+}
+
+.exp-logo svg,
+.exp-logo img {
+  display: block;
 }
 
 .exp-role-line {
