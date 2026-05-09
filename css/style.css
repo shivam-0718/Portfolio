@@ -17,8 +17,7 @@
 }
 
 body {
-  font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
-  font-style: italic;
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -193,6 +192,7 @@ section.section-active {
 }
 
 .nav-link {
+  font-family: "STIX Two Text", Georgia, serif;
   font-size: 0.88rem;
   color: var(--text-muted);
   font-weight: 400;
