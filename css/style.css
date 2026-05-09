@@ -322,12 +322,12 @@ section.section-active {
   font-size: 0.9rem;
   color: var(--text);
   transition: color 0.15s ease;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .project-link:hover {
   color: var(--text-muted);
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 /* ===== BLOGS ===== */
