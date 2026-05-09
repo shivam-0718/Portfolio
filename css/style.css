@@ -118,9 +118,9 @@ a:hover {
 .page-layout {
   display: grid;
   grid-template-columns: 110px 1fr;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0;
-  padding: 3rem 2rem 3rem 4rem;
+  padding: 3rem 4rem 3rem 4rem;
   min-height: 100vh;
 }
 
@@ -225,14 +225,16 @@ section.section-active {
 }
 
 .about-image-col {
+  width: 220px;
   flex-shrink: 0;
+  margin-left: auto;
+  padding-right: 2rem;
 }
 
 .profile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
   background: var(--surface);
   filter: grayscale(10%);
   border: 1px solid var(--border);
@@ -353,6 +355,11 @@ section.section-active {
   color: var(--text-muted);
 }
 
+.project-tech {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* ===== BLOGS ===== */
 .blog-list {
   display: flex;
@@ -399,7 +406,6 @@ section.section-active {
   font-size: 0.95rem;
   line-height: 1.75;
   margin-bottom: 2rem;
-  max-width: 50ch;
 }
 
 .contact-list {
@@ -445,6 +451,19 @@ section.section-active {
 
 .social-link:hover {
   color: var(--text);
+}
+
+/* ===== FOOTER ===== */
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  padding: 1rem;
 }
 
 /* ===== MOBILE ===== */
