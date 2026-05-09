@@ -126,13 +126,13 @@ a:hover {
 
 .sidebar {
   position: sticky;
-  top: 4rem;
+  top: 3rem;
   height: fit-content;
   padding-right: 1.5rem;
 }
 
 .main-content {
-  border-left: 1px solid var(--border);
+  border-left: 1px solid #c8c8c3;
   padding-left: 2.5rem;
 }
 
@@ -320,12 +320,12 @@ section.section-active {
 
 .project-link {
   font-size: 0.9rem;
-  color: var(--link);
+  color: var(--text);
   transition: color 0.15s ease;
 }
 
 .project-link:hover {
-  color: var(--link-hover);
+  color: var(--text-muted);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
