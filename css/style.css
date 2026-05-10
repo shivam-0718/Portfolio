@@ -473,7 +473,7 @@ section.section-active {
     width: 240px;
     height: 100vh;
     background: var(--bg);
-    border-right: 1px solid var(--border);
+    border-right: 1px var(--border);
     z-index: 999;
     padding: 2rem 1.5rem;
     transition: left 0.25s ease;
@@ -504,5 +504,17 @@ section.section-active {
 
   .about-image-col {
     align-self: center;
+  }
+
+  .about-image-col {
+    align-self: center; 
+    margin: 1.5rem 0 0 0; 
+    padding-right: 0; 
+    width: 100%; 
+    max-width: 280px; 
+  }
+
+  .profile-image {
+    margin: 0 auto; 
   }
 }
