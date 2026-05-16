@@ -145,25 +145,29 @@ section.section-active {
   animation: fadeIn 0.2s ease forwards;
 }
 
-.hamburger {
+.swipe-hint {
   display: none;
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1000;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.45rem 0.7rem;
-  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 1rem 0.5rem;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1;
-  transition: background 0.15s ease;
+  transition: color 0.15s ease;
 }
 
-.hamburger:hover {
-  background: var(--surface);
+.swipe-hint:hover {
+  color: var(--text);
+}
+
+body.sidebar-open .swipe-hint {
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -456,14 +460,13 @@ section.section-active {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .hamburger {
+  .swipe-hint {
     display: block;
   }
 
   .page-layout {
     grid-template-columns: 1fr;
     padding: 1.5rem 1.25rem;
-    padding-top: 4rem;
   }
 
   .sidebar {

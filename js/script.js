@@ -33,10 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', () => {
-            document.body.classList.toggle('sidebar-open');
+    const swipeHint = document.getElementById('swipeHint');
+    if (swipeHint) {
+        swipeHint.addEventListener('click', () => {
+            document.body.classList.add('sidebar-open');
         });
     }
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (dx > 60 && touchStartX < 40) {
+            document.body.classList.add('sidebar-open');
+        } else if (dx < -60) {
+            document.body.classList.remove('sidebar-open');
+        }
+    }, { passive: true });
 });
