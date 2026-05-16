@@ -2,20 +2,22 @@
 
 Personal portfolio website built with HTML, CSS, and vanilla JavaScript. No frameworks, no build tools — static files deployed on Vercel.
 
+**Live:** [shivamvyas.in](https://www.shivamvyas.in)
+
 ## Sections
 
 | Section | Description |
 |---|---|
 | **About** | Bio, introduction, and profile photo |
-| **Experience** | Job Experience at various companies |
-| **Thoughts** | Engineering blog — backend architecture, system design, distributed systems + perspective take on different subjects |
+| **Experience** | Work history at Techwave and Infosys |
+| **Thoughts** | Engineering blog — backend architecture, system design, distributed systems |
 | **Projects** | Open-source and personal projects on GitHub |
-| **Connect** | Email, LinkedIn, and GitHub |
+| **Connect** | LinkedIn, GitHub, and X |
 
 ## Tech Stack
 
 - HTML5, CSS3, Vanilla JavaScript
-- Google Fonts — STIX Two Text
+- Google Fonts — EB Garamond (body), STIX Two Text (nav)
 - Deployed on Vercel (static, no build step)
 
 ## Local Development
@@ -34,23 +36,18 @@ Or use the VS Code **Live Server** extension.
 ```
 Portfolio/
 ├── index.html              # Single-page app — all sections
+├── og-image.html           # OG image template (1200×630) for social sharing
 ├── css/
 │   └── style.css           # Design tokens, layout, components
 ├── js/
-│   └── script.js           # Loader, section navigation, hamburger
+│   └── script.js           # Loader, section navigation, swipe gestures
 ├── assets/
-│   └── logos/              # Company logo assets
-├── thoughts/               # Blog posts (Markdown)
-│   ├── index.json          # Post manifest
-│   └── <slug>/
-│       └── content.md
+│   ├── logo.svg            # S.V. monogram
+│   └── logos/              # Company logo assets (Techwave, Infosys)
 └── images/
-    └── profile.jpg         # Profile photo
+    ├── profile.jpeg        # Profile photo
+    └── og.png              # Open Graph / Twitter card image
 ```
-
-## Coming Next
-
-- **Thoughts** — Engineering blog with Markdown-rendered posts on backend architecture, system design, and distributed systems
 
 ## License
 
