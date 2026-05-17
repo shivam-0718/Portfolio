@@ -40,6 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.addEventListener('click', (e) => {
+        if (document.body.classList.contains('sidebar-open')) {
+            const sidebar = document.querySelector('.sidebar');
+            const hint = document.getElementById('swipeHint');
+            if (!sidebar.contains(e.target) && e.target !== hint) {
+                document.body.classList.remove('sidebar-open');
+            }
+        }
+    });
+
     let touchStartX = 0;
     document.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
