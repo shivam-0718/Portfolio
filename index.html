@@ -27,6 +27,7 @@
     <script src="/js/script.js" defer></script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Loader -->
     <div class="loader-wrapper">
       <div class="loader">
@@ -42,7 +43,7 @@
     <div class="page-layout">
       <aside class="sidebar">
         <div class="sidebar-inner">
-          <nav class="sidebar-nav">
+          <nav class="sidebar-nav" aria-label="Main navigation">
             <ul>
               <li>
                 <a href="#about" class="nav-link" data-section="about"
@@ -74,14 +75,22 @@
         </div>
       </aside>
 
-      <main class="main-content">
-        <section id="about">
+      <main class="main-content" id="main-content">
+        <section id="about" aria-labelledby="about-heading">
           <div class="about-content">
-            <h1 class="intro-name">Shivam Vyas</h1>
+            <h1 class="intro-name" id="about-heading">Shivam Vyas</h1>
             <p>
               I'm a software engineer based in Mumbai, India, with 3.5+ years of experience
               building enterprise applications — mostly in the fintech and payments space.
             </p>
+            <div class="about-image-col">
+              <img
+                src="/images/profile.jpeg"
+                alt="Shivam Vyas, Senior Software Engineer"
+                class="profile-image"
+                onerror="this.style.display = 'none'"
+              />
+            </div>
             <p>
               My interest in computers started early — a Windows XP machine at home, hours
               spent poking around, Winamp in the background, playing Pinball, experimenting
@@ -104,27 +113,19 @@
               and
               <a href="#projects" class="inline-link" onclick="showSection('projects'); return false;">projects</a>
               here, or find me on
-              <a href="https://github.com/shivam-0718" class="inline-link" target="_blank" rel="noopener">GitHub</a>,
-              <a href="https://x.com/s1807v" class="inline-link" target="_blank" rel="noopener">X/Twitter</a>,
+              <a href="https://github.com/shivam-0718" class="inline-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)">GitHub</a>,
+              <a href="https://x.com/s1807v" class="inline-link" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter (opens in new tab)">X/Twitter</a>,
               and
-              <a href="https://linkedin.com/in/shivam-vyas-1807" class="inline-link" target="_blank" rel="noopener">LinkedIn</a>.
+              <a href="https://linkedin.com/in/shivam-vyas-1807" class="inline-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>.
             </p>
-          </div>
-          <div class="about-image-col">
-            <img
-              src="/images/profile.jpeg"
-              alt="Shivam Vyas"
-              class="profile-image"
-              onerror="this.style.display = 'none'"
-            />
           </div>
         </section>
 
-        <section id="experience">
-          <h2 class="section-heading">Experience</h2>
+        <section id="experience" aria-labelledby="experience-heading">
+          <h2 class="section-heading" id="experience-heading">Experience</h2>
           <div class="experience-list">
             <div class="exp-item">
-              <div class="exp-logo" aria-label="Techwave Logo">
+              <div class="exp-logo">
                 <a href="https://www.techwave.com" target="_blank" rel="noopener noreferrer">
                   <img src="assets/logos/techwave.png" alt="Techwave" height="20">
                 </a>
@@ -167,7 +168,7 @@
               </ul>
             </div>
             <div class="exp-item">
-              <div class="exp-logo" aria-label="Infosys Logo">
+              <div class="exp-logo">
                 <a href="https://www.infosys.com" target="_blank" rel="noopener noreferrer">
                   <img src="assets/logos/infosys.svg" alt="Infosys" height="20">
                 </a>
@@ -200,13 +201,13 @@
           </div>
         </section>
 
-        <section id="thoughts">
-          <h2 class="section-heading">Thoughts</h2>
+        <section id="thoughts" aria-labelledby="thoughts-heading">
+          <h2 class="section-heading" id="thoughts-heading">Thoughts</h2>
           <p class="projects-intro">Ideas, my perspective on different technologies, blogs and posts on backend engineering, system design, and mathematics. Coming soon.</p>
         </section>
 
-        <section id="projects">
-          <h2 class="section-heading">Projects</h2>
+        <section id="projects" aria-labelledby="projects-heading">
+          <h2 class="section-heading" id="projects-heading">Projects</h2>
           <p class="projects-intro">
             My other mini projects (find all of them on
             <a
@@ -268,8 +269,8 @@
           </ul>
         </section>
 
-        <section id="connect">
-          <h2 class="section-heading">Connect</h2>
+        <section id="connect" aria-labelledby="connect-heading">
+          <h2 class="section-heading" id="connect-heading">Connect</h2>
           <p class="connect-intro">
             Always open to thoughtful conversations — whether it's about
             backend engineering, payment systems, or emerging technology.

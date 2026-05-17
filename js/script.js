@@ -27,11 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.showSection = function showSection(sectionId) {
         allSections.forEach(s => s.classList.remove('section-active'));
-        navLinks.forEach(l => l.classList.remove('active'));
+        navLinks.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+        });
         const target = document.getElementById(sectionId);
         if (target) target.classList.add('section-active');
         const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
-        if (activeLink) activeLink.classList.add('active');
+        if (activeLink) {
+            activeLink.classList.add('active');
+            activeLink.setAttribute('aria-current', 'page');
+        }
     }
 
     showSection('about');
