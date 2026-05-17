@@ -20,6 +20,15 @@
   --link-hover: #f0f0ee;
 }
 
+[data-theme="dark"] .main-content {
+  border-left-color: #2a2a2a;
+}
+
+[data-theme="dark"] .exp-logo img[alt="Techwave"],
+[data-theme="dark"] .exp-logo img[alt="Infosys"] {
+  filter: brightness(0) invert(1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -469,10 +478,64 @@ body.sidebar-open .swipe-hint {
   color: var(--text);
 }
 
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+  position: fixed;
+  top: 3rem;
+  right: 4rem;
+  z-index: 100;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+}
+
+.theme-toggle svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.icon-moon {
+  fill: currentColor;
+}
+
+.icon-sun {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  display: none;
+}
+
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .swipe-hint {
     display: block;
+  }
+
+  .theme-toggle {
+    top: 1.5rem;
+    right: 1.25rem;
   }
 
   .page-layout {
