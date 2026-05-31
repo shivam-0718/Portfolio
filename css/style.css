@@ -186,7 +186,7 @@ a:hover {
 .sidebar {
   position: sticky;
   top: 3rem;
-  height: fit-content;
+  height: calc(100vh - 6rem);
   padding-right: 1.5rem;
 }
 
@@ -246,6 +246,7 @@ body.sidebar-open .swipe-hint {
 .sidebar-inner {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .sidebar-nav ul {
@@ -275,6 +276,39 @@ body.sidebar-open .swipe-hint {
   color: var(--text);
   font-weight: 700;
   font-style: italic;
+}
+
+/* ===== SIDEBAR FOOTER ===== */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.sidebar-social {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-icon-link {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  line-height: 0;
+}
+
+.sidebar-icon-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.sidebar-icon-link:hover {
+  color: var(--text);
 }
 
 /* ===== ABOUT ===== */
@@ -446,9 +480,13 @@ body.sidebar-open .swipe-hint {
 
 .blog-dots {
   flex: 1;
-  border-bottom: 1px dotted var(--border);
+  border-bottom: 1px dotted #c0c0b8;
   margin-bottom: 3px;
   min-width: 1rem;
+}
+
+[data-theme="dark"] .blog-dots {
+  border-bottom-color: #444444;
 }
 
 .blog-date {
@@ -457,6 +495,105 @@ body.sidebar-open .swipe-hint {
   white-space: nowrap;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+}
+
+/* ===== POST PAGE ===== */
+.post-toc-col {
+  position: fixed;
+  top: 3rem;
+  right: 2.5rem;
+  width: 150px;
+  display: none;
+}
+
+@media (min-width: 1300px) {
+  .post-toc-col {
+    display: block;
+  }
+}
+
+.post-article {
+  max-width: 640px;
+}
+
+.post-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.post-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-section {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.post-body p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.post-body p:last-child {
+  margin-bottom: 0;
+}
+
+.post-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-body a:hover {
+  color: var(--link-hover);
+}
+
+/* ===== THOUGHTS TOC (used in post pages) ===== */
+.thoughts-toc {
+  position: sticky;
+  top: 3rem;
+}
+
+.toc-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.toc-link {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: block;
+  padding: 0.2rem 0;
+  transition: color 0.15s ease;
+  line-height: 1.4;
+}
+
+.toc-link:hover,
+.toc-link.active {
+  color: var(--text);
 }
 
 /* ===== CONNECT ===== */
@@ -618,6 +755,7 @@ body.sidebar-open .swipe-hint {
   .profile-image {
     margin: 0 auto;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
