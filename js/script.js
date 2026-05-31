@@ -40,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    showSection('about');
+    const hashSection = window.location.hash.replace('#', '');
+    if (hashSection && document.getElementById(hashSection)) {
+        showSection(hashSection);
+    } else {
+        showSection('about');
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
