@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            if (!link.dataset.section) return;
             e.preventDefault();
             showSection(link.dataset.section);
             document.body.classList.remove('sidebar-open');
