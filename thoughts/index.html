@@ -20,6 +20,7 @@
         document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
       })();
     </script>
+    <script src="/js/script.js" defer></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -32,9 +33,9 @@
           <nav class="sidebar-nav" aria-label="Main navigation">
             <ul>
               <li><a href="/" class="nav-link">About me</a></li>
-              <li><a href="/#experience" class="nav-link">Experience</a></li>
+              <li><a href="/experience/" class="nav-link">Experience</a></li>
               <li><a href="/thoughts/" class="nav-link active" aria-current="page">Thoughts</a></li>
-              <li><a href="/#projects" class="nav-link">Projects</a></li>
+              <li><a href="/projects/" class="nav-link">Projects</a></li>
             </ul>
           </nav>
 
@@ -86,48 +87,5 @@
         </div>
       </main>
     </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', function () {
-          var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('theme', next);
-        });
-
-        var swipeHint = document.getElementById('swipeHint');
-        if (swipeHint) {
-          swipeHint.addEventListener('click', function () {
-            document.body.classList.add('sidebar-open');
-          });
-        }
-
-        document.addEventListener('click', function (e) {
-          if (document.body.classList.contains('sidebar-open')) {
-            var sidebar = document.querySelector('.sidebar');
-            var hint = document.getElementById('swipeHint');
-            if (!sidebar.contains(e.target) && e.target !== hint) {
-              document.body.classList.remove('sidebar-open');
-            }
-          }
-        });
-
-        var touchStartX = 0;
-        document.addEventListener('touchstart', function (e) {
-          touchStartX = e.touches[0].clientX;
-        }, { passive: true });
-
-        document.addEventListener('touchend', function (e) {
-          var dx = e.changedTouches[0].clientX - touchStartX;
-          if (dx > 60 && touchStartX < 40) {
-            document.body.classList.add('sidebar-open');
-          } else if (dx < -60) {
-            document.body.classList.remove('sidebar-open');
-          }
-        }, { passive: true });
-
-      });
-    </script>
   </body>
 </html>
