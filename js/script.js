@@ -1,3 +1,21 @@
+window.addEventListener('load', function () {
+  var loaderWrapper = document.querySelector('.loader-wrapper');
+  if (!loaderWrapper) return;
+  var navEntry = performance.getEntriesByType('navigation')[0];
+  var isReload = navEntry ? navEntry.type === 'reload' : performance.navigation.type === 1;
+  if (!isReload && sessionStorage.getItem('loaderShown')) {
+    loaderWrapper.style.display = 'none';
+    return;
+  }
+  sessionStorage.setItem('loaderShown', 'true');
+  setTimeout(function () {
+    loaderWrapper.style.opacity = '0';
+    setTimeout(function () {
+      loaderWrapper.style.display = 'none';
+    }, 500);
+  }, 1500);
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   var themeToggle = document.getElementById('themeToggle');
   if (themeToggle) {
