@@ -91,10 +91,35 @@
       </aside>
 
       <main class="main-content" id="main-content">
-        <div class="blog-list" id="postList">
-          <p class="projects-intro" style="color: var(--text-muted); font-style: italic;">Writing soon.</p>
-        </div>
+        <div class="blog-list" id="postList"></div>
       </main>
     </div>
+
+    <script>
+      fetch('/thoughts/manifest.json')
+        .then(function (r) { return r.json(); })
+        .then(function (posts) {
+          var list = document.getElementById('postList');
+          if (!posts || !posts.length) {
+            list.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Writing soon.</p>';
+            return;
+          }
+          posts.forEach(function (post) {
+            var entry = document.createElement('div');
+            entry.className = 'blog-entry';
+            var date = post.date ? post.date.replace(/-/g, '.') : '';
+            var href = post.url || ('/thoughts/post.html?slug=' + encodeURIComponent(post.slug));
+            var isExternal = !!post.url;
+            entry.innerHTML =
+              '<a href="' + href + '" class="blog-title"' +
+              (isExternal ? ' target="_blank" rel="noopener noreferrer" aria-label="' + post.title + ' (opens in new tab)"' : '') +
+              '>' + post.title + '</a>' +
+              '<span class="blog-dots"></span>' +
+              '<span class="blog-date">' + date + '</span>';
+            list.appendChild(entry);
+          });
+        })
+        .catch(function () {});
+    </script>
   </body>
 </html>
