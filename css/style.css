@@ -498,10 +498,17 @@ body.sidebar-open .swipe-hint {
 .post-toc-col {
   position: fixed;
   top: 3rem;
-  right: 2.5rem;
-  width: 150px;
+  right: 2rem;
+  width: 190px;
   display: none;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
+
+.post-toc-col::-webkit-scrollbar { width: 3px; }
+.post-toc-col::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
 @media (min-width: 1300px) {
   .post-toc-col {
@@ -559,8 +566,7 @@ body.sidebar-open .swipe-hint {
 
 /* ===== THOUGHTS TOC (used in post pages) ===== */
 .thoughts-toc {
-  position: sticky;
-  top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .toc-label {
@@ -588,9 +594,21 @@ body.sidebar-open .swipe-hint {
   line-height: 1.4;
 }
 
-.toc-link:hover,
+.toc-link:hover {
+  color: var(--text);
+}
+
 .toc-link.active {
   color: var(--text);
+  font-weight: 600;
+}
+
+.toc-link-h3 {
+  padding-left: 0.8rem;
+  font-size: 0.73rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ===== CONNECT ===== */
