@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.0.0] — unreleased (branch `v2`)
+
+### Summary
+
+Full rewrite on Next.js. Same left-sidebar identity and content; v1 is frozen on the `v1` branch.
+
+### What's New
+
+- **Next.js 16 + TypeScript + Tailwind v4** replaces the hand-written HTML/CSS/JS. The sidebar and `<head>` are defined once in `app/layout.tsx` instead of being copied into every page.
+- **Server-rendered pages.** `/thoughts/` used to render its list with client-side JS, so crawlers saw an empty page. Every route is now static HTML.
+- **SEO.** Per-page titles, descriptions, canonical URLs and OG/Twitter cards, plus `sitemap.xml` and `robots.txt`.
+- **ui-sdk components.** NavigationMenu for the sidebar nav, Switch for dark mode, Drawer for the mobile menu.
+- **Agent-ready.** The ui-sdk agent bridge registers `snapshot`/`act`/`query` over WebMCP.
+- **IBM Plex Sans + Mono** replace EB Garamond / STIX Two Text.
+- **Footer** now reads "Inspired from shud.in and paco.me · © year".
+
+### Removed
+
+- 1.5s loading spinner
+- ❯❯ swipe hint and touch-gesture sidebar, replaced by a Menu drawer
+- Rule that hid the theme toggle on mobile everywhere except About
+
+### Fixed
+
+- "wenterprise" typo in the meta description; OG and Twitter titles now match
+- Muted text colour darkened to `#6b6b66` in light mode to meet 4.5:1 contrast
+
+---
+
 ## [v1.2.0] — 2026-06-28
 
 **Previous:** v1.1.0 · All releases
