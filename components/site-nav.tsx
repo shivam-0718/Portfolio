@@ -8,46 +8,57 @@ import {
 } from "@ui-sdk/react/navigation-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SocialIcon } from "@/components/icons";
+import { Monogram, SocialIcon } from "@/components/icons";
 import { MobileMenu } from "@/components/mobile-menu";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { navItems, site, socials } from "@/content/site";
 import { isActive } from "@/lib/is-active";
 
-export function SiteNav({ year }: { year: number }) {
+// One header for both breakpoints, so the theme switch and nav exist once in the DOM
+// (the agent bridge needs unique labels).
+export function SiteNav() {
   const pathname = usePathname();
+  const onAbout = pathname === "/";
 
   return (
-    <aside className="sticky top-0 z-20 -mx-5 border-b border-border bg-background/95 px-5 py-3 backdrop-blur-sm md:top-12 md:mx-0 md:h-[calc(100dvh-6rem)] md:border-0 md:bg-transparent md:px-0 md:py-0 md:pr-6 md:backdrop-blur-none">
-      <div className="flex items-center justify-between md:h-full md:flex-col md:items-stretch md:justify-start">
-        <Link href="/" className="text-[0.95rem] font-semibold text-foreground hover:text-muted-foreground md:hidden">
+    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-3 md:h-16 md:px-8 md:py-0">
+        {/* The About page's own heading is the name, so on desktop the bar shows the monogram instead. */}
+        <Link
+          href="/"
+          className={`text-[0.95rem] font-semibold tracking-tight text-foreground transition-colors hover:text-link ${onAbout ? "md:hidden" : ""}`}
+        >
           {site.name}
         </Link>
+        {onAbout && (
+          <Link
+            href="/"
+            aria-label={`${site.name}, home`}
+            className="hidden text-foreground transition-opacity hover:opacity-80 md:block"
+          >
+            <Monogram />
+          </Link>
+        )}
 
-        <NavigationMenu aria-label="Main navigation" orientation="vertical" className="hidden md:block">
-          <NavigationMenuList className="flex flex-col gap-1.5 text-right">
-            {navItems.map((item) => (
-              <NavigationMenuItem key={item.href}>
-                <NavigationMenuLink
-                  render={<Link href={item.href} />}
-                  current={isActive(pathname, item.href)}
-                  className="group flex items-center justify-end gap-2 py-0.5 text-[0.88rem] text-muted-foreground italic transition-colors hover:text-foreground data-current:font-semibold data-current:text-foreground"
-                >
-                  {item.label}
-                  <item.icon
-                    aria-hidden="true"
-                    strokeWidth={1.75}
-                    className="size-3.5 shrink-0 transition-colors group-hover:text-link group-data-current:text-link"
-                  />
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="flex items-center gap-3 md:ml-auto md:gap-4 lg:gap-6">
+          <NavigationMenu aria-label="Main navigation" className="hidden md:block">
+            <NavigationMenuList className="flex items-center gap-4 lg:gap-6">
+              {navItems.map((item) => (
+                <NavigationMenuItem key={item.href}>
+                  <NavigationMenuLink
+                    render={<Link href={item.href} />}
+                    current={isActive(pathname, item.href)}
+                    className="text-[0.875rem] text-muted-foreground transition-colors hover:text-foreground data-current:font-medium data-current:text-foreground"
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
 
-        <div className="flex items-center gap-3 md:mt-auto md:flex-col md:items-end md:gap-3 md:pt-8">
-          <div className="flex items-center gap-3 md:gap-2.5">
-            <div className="hidden items-center md:flex">
+          <div className="flex items-center gap-3 md:gap-2">
+            <div className="hidden items-center gap-2 md:flex">
               {socials.map((social) => (
                 <a
                   key={social.name}
@@ -55,25 +66,19 @@ export function SiteNav({ year }: { year: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${social.label} (opens in new tab)`}
-                  className="flex size-6 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                 >
                   <SocialIcon name={social.name} className="size-3.5" />
                 </a>
               ))}
             </div>
-            <ThemeSwitch />
+            <span className="flex md:ml-1.5">
+              <ThemeSwitch />
+            </span>
             <MobileMenu />
           </div>
-          {/* items-end lets a line wider than the 110px column spill into the left page padding. */}
-          <p className="hidden flex-col items-end text-[0.68rem] leading-snug whitespace-nowrap text-muted-foreground italic md:flex">
-            <span>Inspired from shud.in</span>
-            <span>and paco.me</span>
-            <span>
-              © {year} {site.name}
-            </span>
-          </p>
         </div>
       </div>
-    </aside>
+    </header>
   );
 }

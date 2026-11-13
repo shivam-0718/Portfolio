@@ -8,6 +8,26 @@ const paths: Record<SocialName, string> = {
   X: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
 };
 
+// The S.V. logo from app/icon.svg, drawn in theme colours so it inverts in dark mode.
+export function Monogram({ className = "size-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" aria-hidden="true" className={className}>
+      <circle cx="50" cy="50" r="50" fill="currentColor" />
+      <text
+        x="50"
+        y="58"
+        fontFamily="Georgia, serif"
+        fontSize="30"
+        fontWeight="700"
+        textAnchor="middle"
+        style={{ fill: "var(--background)" }}
+      >
+        S.V.
+      </text>
+    </svg>
+  );
+}
+
 export function SocialIcon({ name, className }: { name: SocialName; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">

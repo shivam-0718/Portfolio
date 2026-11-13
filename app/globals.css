@@ -134,14 +134,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    /* Keeps Tab-focused elements clear of the sticky mobile top bar. */
-    scroll-padding-top: 4.5rem;
-  }
-
-  @media (min-width: 48rem) {
-    html {
-      scroll-padding-top: 0;
-    }
+    /* Keeps Tab-focused elements clear of the sticky header. */
+    scroll-padding-top: 5rem;
   }
 
   a,
