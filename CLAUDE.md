@@ -24,12 +24,13 @@ npm run dev | build | typecheck | test
 
 | Path | Role |
 |---|---|
-| `app/layout.tsx` | `<html>`, fonts, pre-paint theme script, sidebar + main grid (`content-start`, text column `max-w-[85ch]`), mobile-only footer, `<AgentBridge/>` |
+| `app/layout.tsx` | `<html>`, fonts, pre-paint theme script, header, centered `<main>` (`max-w-3xl`), centered footer credit, `<AgentBridge/>` |
 | `app/page.tsx` | About page (copy lives here) |
 | `app/{experience,projects,thoughts}/page.tsx` | Pages that render arrays from `content/` |
 | `app/sitemap.ts`, `app/robots.ts`, `app/icon.svg`, `app/not-found.tsx` | SEO, favicon, 404 |
 | `app/globals.css` | Colour tokens (`:root` / `[data-theme="dark"]`), Tailwind `@theme` mapping, base styles |
-| `components/site-nav.tsx` | Sidebar: ui-sdk `NavigationMenu` (vertical), socials, theme switch, and the footer credit on desktop. Below `md` it becomes a top bar: name on the left, switch and Menu on the right |
+| `components/site-nav.tsx` | Sticky header with a blurred background (sensory-ui style), aligned to the content column (`max-w-3xl`, same padding as `<main>`). Desktop: the name on the left (on `/` the S.V. `Monogram` from `components/icons.tsx` replaces it, because the page heading already says the name), then plain ui-sdk `NavigationMenu` links, bordered LinkedIn, GitHub and X icon buttons, and the theme switch. Below `md`: the name on the left, switch and Menu on the right. It's one element for both, so the switch and nav each exist once |
+| `lib/github.ts` | Build-time GitHub fetch (language, stars, last update), revalidated daily, with fallback to `content/projects.ts`. Set `GITHUB_TOKEN` in Vercel to avoid the 60 requests/hour unauthenticated limit |
 | `components/mobile-menu.tsx` | ui-sdk `Drawer` (opens from the right) with nav and socials. Its contents are `data-agent-hidden` so agents use the sidebar's copy |
 | `components/theme-switch.tsx` | ui-sdk `Switch` labelled "Dark mode". Writes `data-theme` and `localStorage`, and syncs `theme-color` |
 | `components/agent-bridge.tsx` | `createAgent` + `registerTools` (WebMCP), created lazily on the client |
@@ -50,6 +51,6 @@ npm run dev | build | typecheck | test
 
 ## Content updates
 
-- Experience, projects, thoughts: edit the arrays in `content/`.
+- Experience, projects, thoughts: edit the arrays in `content/`. Projects need `repo` (plus `path` for a folder inside a repo), a short `description`, `stack` and `started` (the first-commit date). Mark `inProgress` for unfinished work.
 - Thoughts entries are `{ kind: "external", title, date, url }` today. The `kind: "hosted"` (`slug`, `excerpt`) shape is reserved for MDX posts when the blog moves onto the site, which is planned for a separate conversation. When that happens, the portfolio becomes canonical and Medium uses "Import a story".
 - OG image: `public/images/og.png` (2400×1260, served as 1200×630).
