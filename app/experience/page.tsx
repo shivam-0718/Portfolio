@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { CalendarDays } from "lucide-react";
 import Image from "next/image";
+import { PageHeading } from "@/components/page-heading";
 import { experience } from "@/content/experience";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -13,9 +15,9 @@ export const metadata: Metadata = pageMetadata({
 export default function ExperiencePage() {
   return (
     <section aria-labelledby="experience-heading">
-      <h1 id="experience-heading" className="mb-6 text-[1.1rem] font-semibold">
+      <PageHeading id="experience-heading" href="/experience/">
         Experience
-      </h1>
+      </PageHeading>
       <ol className="flex flex-col gap-10">
         {experience.map((job) => (
           <li key={job.company}>
@@ -34,12 +36,14 @@ export default function ExperiencePage() {
                 className="logo-invert h-5 w-auto"
               />
             </a>
-            <p className="mb-2 text-[0.95rem]">
+            <p className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[0.95rem]">
               <strong className="font-semibold">{job.role}</strong>
-              <span className="text-muted"> · </span>
-              <span className="font-mono text-[0.82rem] text-muted tabular-nums">{job.period}</span>
+              <span className="inline-flex items-center gap-1.5 font-mono text-[0.82rem] text-muted-foreground tabular-nums">
+                <CalendarDays aria-hidden="true" strokeWidth={1.75} className="size-3.5" />
+                {job.period}
+              </span>
             </p>
-            <ul className="flex list-disc flex-col gap-1.5 pl-[1.1rem] text-[0.95rem] leading-[1.7] marker:text-muted">
+            <ul className="flex list-disc flex-col gap-1.5 pl-[1.1rem] text-[0.95rem] leading-[1.7] marker:text-muted-foreground">
               {job.bullets.map((bullet) => (
                 <li key={bullet}>{bullet}</li>
               ))}

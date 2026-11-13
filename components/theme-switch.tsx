@@ -1,6 +1,7 @@
 "use client";
 
 import { Switch, SwitchThumb } from "@ui-sdk/react/switch";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
@@ -25,7 +26,7 @@ export function ThemeSwitch() {
 
   useEffect(() => {
     for (const meta of document.querySelectorAll('meta[name="theme-color"]')) {
-      meta.setAttribute("content", dark ? "#111111" : "#fafaf8");
+      meta.setAttribute("content", dark ? "#09090b" : "#ffffff");
     }
   }, [dark]);
 
@@ -37,9 +38,12 @@ export function ThemeSwitch() {
         onCheckedChange={(next) => setTheme(next ? "dark" : "light")}
         // Styled from data-theme, not data-checked: the server renders unchecked, and the
         // pre-paint theme script already knows the answer, so the thumb never jumps on load.
-        className="relative inline-flex h-[18px] w-8 shrink-0 cursor-pointer items-center rounded-full bg-switch-off transition-colors duration-200 dark:bg-accent"
+        className="relative inline-flex h-[18px] w-8 shrink-0 cursor-pointer items-center rounded-full bg-muted-foreground transition-colors duration-200 dark:bg-link"
       >
-        <SwitchThumb className="block size-3.5 translate-x-0.5 rounded-full bg-white shadow-[0_1px_3px_rgb(0_0_0/0.25)] transition-transform duration-200 dark:translate-x-4" />
+        <SwitchThumb className="flex size-3.5 translate-x-0.5 items-center justify-center rounded-full bg-white text-muted-foreground shadow-[0_1px_3px_rgb(0_0_0/0.25)] transition-transform duration-200 dark:translate-x-4 dark:text-link">
+          <SunIcon aria-hidden="true" strokeWidth={2.5} className="size-2.5 dark:hidden" />
+          <MoonIcon aria-hidden="true" strokeWidth={2.5} className="hidden size-2.5 dark:block" />
+        </SwitchThumb>
       </Switch>
     </label>
   );

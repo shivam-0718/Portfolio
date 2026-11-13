@@ -18,9 +18,9 @@ export function SiteNav({ year }: { year: number }) {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-0 z-20 -mx-5 border-b border-line bg-bg/95 px-5 py-3 backdrop-blur-sm md:top-12 md:mx-0 md:h-[calc(100dvh-6rem)] md:border-0 md:bg-transparent md:px-0 md:py-0 md:pr-6 md:backdrop-blur-none">
+    <aside className="sticky top-0 z-20 -mx-5 border-b border-border bg-background/95 px-5 py-3 backdrop-blur-sm md:top-12 md:mx-0 md:h-[calc(100dvh-6rem)] md:border-0 md:bg-transparent md:px-0 md:py-0 md:pr-6 md:backdrop-blur-none">
       <div className="flex items-center justify-between md:h-full md:flex-col md:items-stretch md:justify-start">
-        <Link href="/" className="text-[0.95rem] font-semibold text-fg hover:text-muted md:hidden">
+        <Link href="/" className="text-[0.95rem] font-semibold text-foreground hover:text-muted-foreground md:hidden">
           {site.name}
         </Link>
 
@@ -31,9 +31,14 @@ export function SiteNav({ year }: { year: number }) {
                 <NavigationMenuLink
                   render={<Link href={item.href} />}
                   current={isActive(pathname, item.href)}
-                  className="block py-0.5 text-[0.88rem] text-muted italic transition-colors hover:text-fg data-current:font-semibold data-current:text-fg"
+                  className="group flex items-center justify-end gap-2 py-0.5 text-[0.88rem] text-muted-foreground italic transition-colors hover:text-foreground data-current:font-semibold data-current:text-foreground"
                 >
                   {item.label}
+                  <item.icon
+                    aria-hidden="true"
+                    strokeWidth={1.75}
+                    className="size-3.5 shrink-0 transition-colors group-hover:text-link group-data-current:text-link"
+                  />
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
@@ -50,7 +55,7 @@ export function SiteNav({ year }: { year: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${social.label} (opens in new tab)`}
-                  className="flex size-6 items-center justify-center text-muted transition-colors hover:text-fg"
+                  className="flex size-6 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <SocialIcon name={social.name} className="size-3.5" />
                 </a>
@@ -60,7 +65,7 @@ export function SiteNav({ year }: { year: number }) {
             <MobileMenu />
           </div>
           {/* items-end lets a line wider than the 110px column spill into the left page padding. */}
-          <p className="hidden flex-col items-end text-[0.68rem] leading-snug whitespace-nowrap text-muted italic md:flex">
+          <p className="hidden flex-col items-end text-[0.68rem] leading-snug whitespace-nowrap text-muted-foreground italic md:flex">
             <span>Inspired from shud.in</span>
             <span>and paco.me</span>
             <span>

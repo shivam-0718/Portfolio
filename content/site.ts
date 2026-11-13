@@ -6,14 +6,18 @@ export const site = {
     "Senior Software Engineer with 4+ years building enterprise applications in fintech, with a core domain in Java, Spring Boot and banking payments. Based in Mumbai, India.",
 } as const;
 
-export type NavItem = { href: string; label: string };
+import { BriefcaseBusiness, FolderGit2, type LucideIcon, NotebookPen, UserRound } from "lucide-react";
+
+export type NavItem = { href: string; label: string; icon: LucideIcon };
 
 export const navItems: NavItem[] = [
-  { href: "/", label: "About me" },
-  { href: "/experience/", label: "Experience" },
-  { href: "/thoughts/", label: "Thoughts" },
-  { href: "/projects/", label: "Projects" },
+  { href: "/", label: "About me", icon: UserRound },
+  { href: "/experience/", label: "Experience", icon: BriefcaseBusiness },
+  { href: "/thoughts/", label: "Thoughts", icon: NotebookPen },
+  { href: "/projects/", label: "Projects", icon: FolderGit2 },
 ];
+
+export const navIcon = (href: string) => navItems.find((item) => item.href === href)!.icon;
 
 export type SocialName = "LinkedIn" | "GitHub" | "X";
 

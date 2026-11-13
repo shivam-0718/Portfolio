@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { GitBranch } from "lucide-react";
+import { PageHeading } from "@/components/page-heading";
 import { projects } from "@/content/projects";
 import { socials } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -14,9 +16,9 @@ const github = socials.find((s) => s.name === "GitHub")!;
 export default function ProjectsPage() {
   return (
     <section aria-labelledby="projects-heading">
-      <h1 id="projects-heading" className="mb-6 text-[1.1rem] font-semibold">
+      <PageHeading id="projects-heading" href="/projects/">
         Projects
-      </h1>
+      </PageHeading>
       <p className="mb-5 text-[0.95rem] leading-[1.7]">
         My other mini projects (find all of them on{" "}
         <a
@@ -30,19 +32,24 @@ export default function ProjectsPage() {
         </a>
         ):
       </p>
-      <ul className="flex list-disc flex-col gap-2.5 pl-5 text-[0.92rem] marker:text-muted">
+      <ul className="flex flex-col gap-2.5 text-[0.92rem]">
         {projects.map((project) => (
-          <li key={project.url}>
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} (opens in new tab)`}
-              className="inline-link"
-            >
-              {project.title}
-            </a>
-            {project.tech && <span className="ml-1.5 font-mono text-[0.75rem] whitespace-nowrap text-muted">{project.tech}</span>}
+          <li key={project.url} className="flex gap-2.5">
+            <GitBranch aria-hidden="true" strokeWidth={1.75} className="mt-[0.3rem] size-3.5 shrink-0 text-muted-foreground" />
+            <span>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} (opens in new tab)`}
+                className="inline-link"
+              >
+                {project.title}
+              </a>
+              {project.tech && (
+                <span className="ml-1.5 font-mono text-[0.75rem] whitespace-nowrap text-muted-foreground">{project.tech}</span>
+              )}
+            </span>
           </li>
         ))}
       </ul>

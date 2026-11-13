@@ -44,7 +44,7 @@ export default function AboutPage() {
             height={1600}
             priority
             sizes="(min-width: 768px) 220px, 280px"
-            className="h-auto w-full rounded border border-line bg-surface grayscale-[10%]"
+            className="h-auto w-full rounded-lg border border-border bg-muted grayscale-[10%]"
           />
         </div>
 

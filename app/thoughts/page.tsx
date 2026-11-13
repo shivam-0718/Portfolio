@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { PageHeading } from "@/components/page-heading";
 import { getThoughts, thoughtHref } from "@/content/thoughts";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -16,17 +18,17 @@ export default function ThoughtsPage() {
 
   return (
     <section aria-labelledby="thoughts-heading">
-      <h1 id="thoughts-heading" className="mb-6 text-[1.1rem] font-semibold">
+      <PageHeading id="thoughts-heading" href="/thoughts/">
         Thoughts
-      </h1>
+      </PageHeading>
       {thoughts.length === 0 ? (
-        <p className="text-[0.95rem] text-muted">Nothing here yet.</p>
+        <p className="text-[0.95rem] text-muted-foreground">Nothing here yet.</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {thoughts.map((thought) => {
             const href = thoughtHref(thought);
             const external = thought.kind === "external";
-            const className = "text-[0.92rem] text-fg transition-colors hover:text-link";
+            const className = "group inline-flex items-baseline gap-1 text-[0.92rem] text-foreground transition-colors hover:text-link";
             return (
               <li key={href} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2">
                 {external ? (
@@ -38,14 +40,19 @@ export default function ThoughtsPage() {
                     className={className}
                   >
                     {thought.title}
+                    <ArrowUpRight
+                      aria-hidden="true"
+                      strokeWidth={1.75}
+                      className="size-3.5 shrink-0 translate-y-0.5 text-muted-foreground transition-[color,translate] group-hover:translate-x-0.5 group-hover:text-link"
+                    />
                   </a>
                 ) : (
                   <Link href={href} className={className}>
                     {thought.title}
                   </Link>
                 )}
-                <span aria-hidden="true" className="hidden min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-dots sm:block" />
-                <time dateTime={thought.date} className="shrink-0 font-mono text-[0.78rem] text-muted tabular-nums">
+                <span aria-hidden="true" className="hidden min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-muted-foreground/40 sm:block" />
+                <time dateTime={thought.date} className="shrink-0 font-mono text-[0.78rem] text-muted-foreground tabular-nums">
                   {dateFormat.format(new Date(thought.date))}
                 </time>
               </li>
