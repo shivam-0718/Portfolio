@@ -24,13 +24,13 @@ npm run dev | build | typecheck | test
 
 | Path | Role |
 |---|---|
-| `app/layout.tsx` | `<html>`, fonts, pre-paint theme script, sidebar + main grid, footer, `<AgentBridge/>` |
+| `app/layout.tsx` | `<html>`, fonts, pre-paint theme script, sidebar + main grid (`content-start`, text column `max-w-[85ch]`), mobile-only footer, `<AgentBridge/>` |
 | `app/page.tsx` | About page (copy lives here) |
 | `app/{experience,projects,thoughts}/page.tsx` | Pages that render arrays from `content/` |
 | `app/sitemap.ts`, `app/robots.ts`, `app/icon.svg`, `app/not-found.tsx` | SEO, favicon, 404 |
 | `app/globals.css` | Colour tokens (`:root` / `[data-theme="dark"]`), Tailwind `@theme` mapping, base styles |
-| `components/site-nav.tsx` | Sidebar: ui-sdk `NavigationMenu` (vertical), socials, theme switch. Turns into the mobile top bar below `md` |
-| `components/mobile-menu.tsx` | ui-sdk `Drawer` (left) with nav and socials. Its contents are `data-agent-hidden` so agents use the sidebar's copy |
+| `components/site-nav.tsx` | Sidebar: ui-sdk `NavigationMenu` (vertical), socials, theme switch, and the footer credit on desktop. Below `md` it becomes a top bar: name on the left, switch and Menu on the right |
+| `components/mobile-menu.tsx` | ui-sdk `Drawer` (opens from the right) with nav and socials. Its contents are `data-agent-hidden` so agents use the sidebar's copy |
 | `components/theme-switch.tsx` | ui-sdk `Switch` labelled "Dark mode". Writes `data-theme` and `localStorage`, and syncs `theme-color` |
 | `components/agent-bridge.tsx` | `createAgent` + `registerTools` (WebMCP), created lazily on the client |
 | `content/*.ts` | Typed data: `site` / `navItems` / `socials`, `experience`, `projects`, `thoughts` |

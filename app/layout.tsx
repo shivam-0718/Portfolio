@@ -55,14 +55,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
 
-        <div className="grid w-full max-w-[1200px] flex-1 grid-cols-1 px-5 pb-6 md:grid-cols-[110px_minmax(0,1fr)] md:px-16 md:py-12">
-          <SiteNav />
+        {/* content-start: without it the auto rows split the min-height, leaving a gap under the mobile bar. */}
+        <div className="grid w-full max-w-[1200px] flex-1 grid-cols-1 content-start px-5 pb-6 md:grid-cols-[110px_minmax(0,1fr)] md:px-16 md:py-12">
+          <SiteNav year={year} />
           <main id="main-content" tabIndex={-1} className="min-w-0 pt-8 outline-none md:border-l md:border-rule md:pt-0 md:pl-10">
-            {children}
+            <div className="max-w-[85ch]">{children}</div>
           </main>
         </div>
 
-        <footer className="px-5 pt-6 pb-8 text-center text-[0.72rem] text-muted italic">
+        <footer className="px-5 pt-4 pb-8 text-[0.72rem] text-muted italic md:hidden">
           Inspired from shud.in and paco.me · © {year} {site.name}
         </footer>
 

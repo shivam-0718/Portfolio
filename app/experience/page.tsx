@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ExperiencePage() {
   return (
-    <section aria-labelledby="experience-heading" className="max-w-[68ch]">
+    <section aria-labelledby="experience-heading">
       <h1 id="experience-heading" className="mb-6 text-[1.1rem] font-semibold">
         Experience
       </h1>

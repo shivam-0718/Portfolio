@@ -25,7 +25,7 @@ function ExternalLink({ name, children }: { name: "GitHub" | "X" | "LinkedIn"; c
 
 export default function AboutPage() {
   return (
-    <section aria-labelledby="about-heading" className="max-w-[68ch] text-[0.95rem] leading-[1.75]">
+    <section aria-labelledby="about-heading" className="text-[0.95rem] leading-[1.75]">
       <h1 id="about-heading" className="mb-4 text-[1.75rem] leading-tight font-semibold tracking-tight">
         {site.name}
       </h1>
@@ -36,14 +36,14 @@ export default function AboutPage() {
           mostly in the fintech and payments space.
         </p>
 
-        <div className="mx-auto mt-4 mb-6 w-full max-w-[280px] md:float-right md:mt-0 md:mb-4 md:ml-8 md:w-[200px]">
+        <div className="mx-auto mt-4 mb-6 w-full max-w-[280px] md:float-right md:mt-0 md:mb-4 md:ml-8 md:w-[220px]">
           <Image
             src="/images/profile.jpeg"
             alt="Shivam Vyas, Senior Software Engineer"
             width={1194}
             height={1600}
             priority
-            sizes="(min-width: 768px) 200px, 280px"
+            sizes="(min-width: 768px) 220px, 280px"
             className="h-auto w-full rounded border border-line bg-surface grayscale-[10%]"
           />
         </div>

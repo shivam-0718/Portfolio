@@ -15,7 +15,7 @@ export default function ThoughtsPage() {
   const thoughts = getThoughts();
 
   return (
-    <section aria-labelledby="thoughts-heading" className="max-w-[68ch]">
+    <section aria-labelledby="thoughts-heading">
       <h1 id="thoughts-heading" className="mb-6 text-[1.1rem] font-semibold">
         Thoughts
       </h1>

@@ -13,7 +13,7 @@ const github = socials.find((s) => s.name === "GitHub")!;
 
 export default function ProjectsPage() {
   return (
-    <section aria-labelledby="projects-heading" className="max-w-[68ch]">
+    <section aria-labelledby="projects-heading">
       <h1 id="projects-heading" className="mb-6 text-[1.1rem] font-semibold">
         Projects
       </h1>
@@ -42,7 +42,7 @@ export default function ProjectsPage() {
             >
               {project.title}
             </a>
-            {project.tech && <span className="ml-1.5 font-mono text-[0.75rem] text-muted">{project.tech}</span>}
+            {project.tech && <span className="ml-1.5 font-mono text-[0.75rem] whitespace-nowrap text-muted">{project.tech}</span>}
           </li>
         ))}
       </ul>

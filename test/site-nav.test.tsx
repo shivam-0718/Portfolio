@@ -15,7 +15,7 @@ const agent = createAgent();
 
 test("an agent can read the nav, switch the theme and open the menu", async () => {
   document.documentElement.dataset.theme = "light";
-  render(<SiteNav />);
+  render(<SiteNav year={2026} />);
 
   const components = agent.snapshot().filter((entry) => !entry.offPage && entry.component !== "more");
   for (const entry of components) {

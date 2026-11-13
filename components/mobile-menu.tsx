@@ -18,12 +18,12 @@ export function MobileMenu() {
   const pathname = usePathname();
 
   return (
-    <Drawer side="left" preventEdgeSwipe>
-      <DrawerTrigger className="-ml-1 cursor-pointer rounded px-1 py-1 text-[0.95rem] text-fg italic transition-colors hover:text-muted md:hidden">
+    <Drawer side="right" preventEdgeSwipe>
+      <DrawerTrigger className="-mr-1 cursor-pointer rounded px-1 py-1 text-[0.95rem] text-fg italic transition-colors hover:text-muted md:hidden">
         Menu
       </DrawerTrigger>
       <DrawerBackdrop className="fixed inset-0 bg-black/30" />
-      <DrawerContent className="flex h-dvh w-64 max-w-[80vw] flex-col overscroll-contain border-r border-line bg-bg px-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+      <DrawerContent className="flex h-dvh w-64 max-w-[80vw] flex-col overscroll-contain border-l border-line bg-bg px-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
         <DrawerTitle className="mb-6 text-xs font-medium tracking-[0.08em] text-muted uppercase">
           Menu
         </DrawerTitle>
