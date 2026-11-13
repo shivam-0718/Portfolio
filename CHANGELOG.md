@@ -4,24 +4,31 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [v2.0.0] — unreleased (branch `v2`)
+## [v2.0.0] — 2026-11-13
+
+**Previous:** v1.2.0 · v1 is frozen on the `v1` branch.
 
 ### Summary
 
-Full rewrite on Next.js. Same left-sidebar identity and content; v1 is frozen on the `v1` branch.
+Full rewrite on Next.js, with a new layout: a sticky top navbar over a centered content column, in place of the left sidebar. Content carries over from v1, plus a live GitHub projects table and two new posts.
 
 ### What's New
 
-- **Next.js 16 + TypeScript + Tailwind v4** replaces the hand-written HTML/CSS/JS. The sidebar and `<head>` are defined once in `app/layout.tsx` instead of being copied into every page.
+- **Next.js 16 + TypeScript + Tailwind v4** replaces the hand-written HTML/CSS/JS. The header and `<head>` are defined once in `app/layout.tsx` instead of being copied into every page.
 - **Server-rendered pages.** `/thoughts/` used to render its list with client-side JS, so crawlers saw an empty page. Every route is now static HTML.
 - **SEO.** Per-page titles, descriptions, canonical URLs and OG/Twitter cards, plus `sitemap.xml` and `robots.txt`.
-- **ui-sdk components.** NavigationMenu for the sidebar nav, Switch for dark mode, Drawer for the mobile menu.
+- **Top navbar.** A sensory-ui-style sticky bar with a blurred background, aligned to the content column: name on the left (the S.V. monogram on About), plain links, bordered LinkedIn/GitHub/X buttons and the theme switch. Phones get a compact bar with a Menu drawer.
+- **Design tokens.** shadcn-style oklch tokens for light and dark mode, radius 0, and lucide icons throughout.
+- **Projects table.** Eight curated repos styled like GitHub's repo list. Language, stars and last update come live from the GitHub API, revalidated daily. Start dates are first-commit dates.
+- **Thoughts.** Generative AI Decoded Parts 3 and 4 added, and the list sorts newest first.
+- **ui-sdk components.** NavigationMenu, Switch (dark mode) and Drawer (mobile menu).
 - **Agent-ready.** The ui-sdk agent bridge registers `snapshot`/`act`/`query` over WebMCP.
 - **IBM Plex Sans + Mono** replace EB Garamond / STIX Two Text.
 - **Footer** now reads "Inspired from shud.in and paco.me · © year".
 
 ### Removed
 
+- Left sidebar layout
 - 1.5s loading spinner
 - ❯❯ swipe hint and touch-gesture sidebar, replaced by a Menu drawer
 - Rule that hid the theme toggle on mobile everywhere except About
@@ -29,7 +36,8 @@ Full rewrite on Next.js. Same left-sidebar identity and content; v1 is frozen on
 ### Fixed
 
 - "wenterprise" typo in the meta description; OG and Twitter titles now match
-- Muted text colour darkened to `#6b6b66` in light mode to meet 4.5:1 contrast
+- Broken Striver A2Z DSA link after the repo rename
+- Muted text meets 4.5:1 contrast in both themes
 
 ---
 
