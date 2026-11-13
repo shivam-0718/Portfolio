@@ -7,6 +7,12 @@ export type Thought =
 const thoughts: Thought[] = [
   {
     kind: "external",
+    title: "Generative AI Decoded | Part 4 of 5",
+    date: "2026-11-13",
+    url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-4-of-5-f83432d1ab9a",
+  },
+  {
+    kind: "external",
     title: "Generative AI Decoded | Part 3 of 5",
     date: "2026-10-16",
     url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-3-of-5-9ef82e3c0fba",
