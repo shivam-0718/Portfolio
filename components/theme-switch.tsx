@@ -15,10 +15,18 @@ function subscribe(onChange: () => void) {
 const isDark = () => document.documentElement.dataset.theme === "dark";
 
 export function setTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
+  const apply = () => {
+    document.documentElement.dataset.theme = theme;
+  };
   try {
     localStorage.setItem("theme", theme);
   } catch {}
+
+  // Cross-fade the whole page between themes (styles in globals.css). Browsers without the
+  // View Transitions API, and people who ask for reduced motion, get an instant switch.
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!document.startViewTransition || reduceMotion) return apply();
+  document.startViewTransition(apply);
 }
 
 export function ThemeSwitch() {
@@ -38,7 +46,7 @@ export function ThemeSwitch() {
         onCheckedChange={(next) => setTheme(next ? "dark" : "light")}
         // Styled from data-theme, not data-checked: the server renders unchecked, and the
         // pre-paint theme script already knows the answer, so the thumb never jumps on load.
-        className="relative inline-flex h-[18px] w-8 shrink-0 cursor-pointer items-center rounded-full bg-muted-foreground transition-colors duration-200 dark:bg-link"
+        className="relative inline-flex h-[18px] w-8 shrink-0 cursor-pointer items-center rounded-full bg-muted-foreground transition-colors duration-200 [view-transition-name:theme-switch] dark:bg-link"
       >
         <SwitchThumb className="flex size-3.5 translate-x-0.5 items-center justify-center rounded-full bg-white text-muted-foreground shadow-[0_1px_3px_rgb(0_0_0/0.25)] transition-transform duration-200 dark:translate-x-4 dark:text-link">
           <SunIcon aria-hidden="true" strokeWidth={2.5} className="size-2.5 dark:hidden" />

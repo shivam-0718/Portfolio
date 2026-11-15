@@ -201,6 +201,22 @@
   }
 }
 
+/* Theme change (components/theme-switch.tsx): the page cross-fades between themes.
+   The switch is left out of the fade so its thumb slides live instead of fading. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(theme-switch) {
+  display: none;
+}
+
+::view-transition-new(theme-switch) {
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
