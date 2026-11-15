@@ -28,14 +28,18 @@ npm run dev | build | typecheck | test
 | `app/page.tsx` | About page (copy lives here) |
 | `app/{experience,projects,thoughts}/page.tsx` | Pages that render arrays from `content/` |
 | `app/sitemap.ts`, `app/robots.ts`, `app/icon.svg`, `app/not-found.tsx` | SEO, favicon, 404 |
+| `app/og.jpg/route.tsx` | The link-preview card (photo, name, role, `site.skills`), rendered at build time with `next/og` and converted to JPEG with `sharp` to keep it small (~55 KB; WhatsApp drops large previews) |
+| `app/llms.txt/route.ts` | `/llms.txt` for AI assistants and answer engines, generated from `content/` |
+| `components/structured-data.tsx` | schema.org JSON-LD (Person, WebSite, ProfilePage) in every page's `<head>` |
+| `components/skills.tsx` + `content/skills.ts` | Skill capsules on the About page, grouped by category. Logos are skillicons.dev SVGs (MIT) saved in `public/skills/`; "themed" ones have `-light`/`-dark` files that follow the site theme. Add a skill by downloading its icon from github.com/tandpfun/skill-icons into `public/skills/`. If skillicons has none, rebuild the same tile (256px, `rx` 60, `#F4F2ED` light / `#242938` dark) from Simple Icons or the project's own logo, as for JUnit 5, SonarQube, Spring Security and LangChain4j. If no logo stays readable at 18px, leave `icon` out for a name-only capsule || `components/resume-download.tsx` | Download button plus a ui-sdk `AlertDialog` asking for confirmation, used in the navbar (icon) and the Menu drawer (full width) |
 | `app/globals.css` | Colour tokens (`:root` / `[data-theme="dark"]`), Tailwind `@theme` mapping, base styles |
-| `components/site-nav.tsx` | Sticky header with a blurred background (sensory-ui style), aligned to the content column (`max-w-3xl`, same padding as `<main>`). Desktop: the name on the left (on `/` the S.V. `Monogram` from `components/icons.tsx` replaces it, because the page heading already says the name), then plain ui-sdk `NavigationMenu` links, bordered LinkedIn, GitHub and X icon buttons, and the theme switch. Below `md`: the name on the left, switch and Menu on the right. It's one element for both, so the switch and nav each exist once |
-| `lib/github.ts` | Build-time GitHub fetch (language, stars, last update), revalidated daily, with fallback to `content/projects.ts`. Set `GITHUB_TOKEN` in Vercel to avoid the 60 requests/hour unauthenticated limit |
+| `components/site-nav.tsx` | Sticky header with a blurred background (sensory-ui style), aligned to the content column (`max-w-3xl`, same padding as `<main>`). Desktop: the name on the left (on `/` the S.V. `Monogram` from `components/icons.tsx` replaces it, because the page heading already says the name), then plain ui-sdk `NavigationMenu` links, a download-resume icon button that opens a confirm dialog, bordered LinkedIn, GitHub and X icon buttons, and the theme switch. Below `md`: the name on the left, switch and Menu on the right. It's one element for both, so the switch and nav each exist once |
+| `lib/github.ts` | Build-time GitHub fetch (language breakdown with percentages, last update), revalidated daily, with fallback to `content/projects.ts`. Set `GITHUB_TOKEN` in Vercel to avoid the 60 requests/hour unauthenticated limit |
 | `components/mobile-menu.tsx` | ui-sdk `Drawer` (opens from the right) with nav and socials. Its contents are `data-agent-hidden` so agents use the sidebar's copy |
-| `components/theme-switch.tsx` | ui-sdk `Switch` labelled "Dark mode". Writes `data-theme` and `localStorage`, and syncs `theme-color` |
+| `components/theme-switch.tsx` | ui-sdk `Switch` labelled "Dark mode". Writes `data-theme` and `localStorage`, and syncs `theme-color`. Theme changes cross-fade with the View Transitions API (styles at the end of `globals.css`); reduced motion and older browsers switch instantly |
 | `components/agent-bridge.tsx` | `createAgent` + `registerTools` (WebMCP), created lazily on the client |
 | `content/*.ts` | Typed data: `site` / `navItems` / `socials`, `experience`, `projects`, `thoughts` |
-| `lib/metadata.ts` | `pageMetadata({ title, description, path })`. Use it on every page so OG and Twitter tags stay complete |
+| `lib/metadata.ts` | `pageMetadata({ title, description, path })`. Use it on every page so OG and Twitter tags stay complete. Tab titles are "Page · Shivam Vyas" and the home tab is just "Shivam Vyas" |
 | `test/site-nav.test.tsx` | ui-sdk agent test (names, theme switch, menu) |
 
 ## Rules
@@ -51,6 +55,10 @@ npm run dev | build | typecheck | test
 
 ## Content updates
 
-- Experience, projects, thoughts: edit the arrays in `content/`. Projects need `repo` (plus `path` for a folder inside a repo), a short `description`, `stack` and `started` (the first-commit date). Mark `inProgress` for unfinished work.
+- Experience (`content/experience.ts`) mirrors the resume: same bullets, locations and dates. Update both together. `certifications` there isn't shown on any page (the resume covers it) and only feeds `/llms.txt`.
+- About copy stays generic: "software engineer", no company name and no industry (payments, fintech). Specifics belong on the Experience page.
+- Projects sort by last GitHub update, newest first, so the order in `content/projects.ts` only matters as a fallback.
+- Experience, projects, thoughts: edit the arrays in `content/`. Projects need `repo` (plus `path` for a folder inside a repo), a short `description`, `stack` (frameworks and tools only, since languages come live from GitHub's languages API) and a fallback `language`. Mark `inProgress` for unfinished work.
 - Thoughts entries are `{ kind: "external", title, date, url }` today. The `kind: "hosted"` (`slug`, `excerpt`) shape is reserved for MDX posts when the blog moves onto the site, which is planned for a separate conversation. When that happens, the portfolio becomes canonical and Medium uses "Import a story".
-- OG image: `public/images/og.png` (2400×1260, served as 1200×630).
+- Resume: `public/resume.pdf`, linked from the navbar and Menu drawer (`resume` in `content/site.ts`). It must be the copy **without the phone number**: everything in `public/` is publicly downloadable. Check before replacing it.
+- Share card, structured data and llms.txt all read `site` in `content/site.ts` (`description`, `skills`, `photo`, `medium`). Keep the wording domain-neutral: Shivam is a software engineer, not tied to one industry. After changing the card, re-scrape it with LinkedIn Post Inspector, since platforms cache previews.
