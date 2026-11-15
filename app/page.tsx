@@ -1,27 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { site, socials } from "@/content/site";
+import { Skills } from "@/components/skills";
+import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({ path: "/" });
-
-const social = Object.fromEntries(socials.map((s) => [s.name, s]));
-
-function ExternalLink({ name, children }: { name: "GitHub" | "X" | "LinkedIn"; children: React.ReactNode }) {
-  const s = social[name];
-  return (
-    <a
-      href={s.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${s.label} (opens in new tab)`}
-      className="inline-link"
-    >
-      {children}
-    </a>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -32,8 +15,9 @@ export default function AboutPage() {
 
       <div className="flow-root">
         <p className="mb-3.5">
-          I’m a software engineer based in Mumbai, India, with 4 years of experience building enterprise applications —
-          mostly in the fintech and payments space.
+          Hi there <span aria-hidden="true">👋</span> I’m Shivam Vyas, a software engineer with 4 years of experience
+          building backend systems in Java and Spring Boot: microservices, REST APIs and transaction-heavy distributed
+          systems.
         </p>
 
         <div className="mx-auto mt-4 mb-6 w-full max-w-[280px] md:float-right md:mt-0 md:mb-4 md:ml-8 md:w-[220px]">
@@ -49,38 +33,22 @@ export default function AboutPage() {
         </div>
 
         <p className="mb-3.5">
-          My interest in computers started early — a Windows XP machine at home, hours spent poking around, Winamp in the
-          background, playing Pinball, experimenting with everything in sight. Those were fun days. It wasn’t until
-          school introduced me to my first lines of HTML that it clicked. Then came C++ in high school, and with it came
-          bigger questions: how does a computer actually work? What happens under the hood? That curiosity carried
-          through university, where Python and Java pulled me deeper into software engineering and I started thinking
-          seriously about how large-scale systems are built.
+          Computers hooked me early, from a Windows XP machine at home to my first lines of HTML at school and C++ in
+          high school. That curiosity followed me to university, where Python and Java pulled me into software for good.
         </p>
         <p className="mb-3.5">
-          Since entering the industry, I have utilized Java and Spring Boot as my primary tools for architecting robust
-          backend systems. My early professional years were defined by designing scalable APIs, contributing to
-          microservices development, and mastering the rigorous standards required to move code from local environments
-          to “production-ready” states.
+          When I started my career, Java and Spring Boot became my everyday tools. My early years went into designing
+          APIs, building microservices and learning what it really takes to get code from a laptop to production.
         </p>
         <p className="mb-3.5">
-          Today, as a Senior Software Engineer, my work centers on the banking payments domain and gateway integrations.
-          I dedicate my time to translating complex transaction flows into backend systems that are inherently simple,
-          reliable, and secure. I find deep satisfaction in this specific problem space, where technical precision is
-          critical to the integrity and success of every transaction.
+          Today I own features end to end, from design to delivery: event-driven services, data-heavy workflows and the
+          tests that keep them reliable. Lately I’ve been building with Spring AI and LangChain4j, exploring how agentic
+          AI fits into backend systems.
         </p>
-        <p>
-          You can explore my{" "}
-          <Link href="/experience/" className="inline-link">
-            background
-          </Link>{" "}
-          and{" "}
-          <Link href="/projects/" className="inline-link">
-            projects
-          </Link>{" "}
-          here, or find me on <ExternalLink name="GitHub">GitHub</ExternalLink>,{" "}
-          <ExternalLink name="X">X/Twitter</ExternalLink>, and <ExternalLink name="LinkedIn">LinkedIn</ExternalLink>.
-        </p>
+        <p>Welcome to my corner of the internet. I hope you enjoy looking around.</p>
       </div>
+
+      <Skills />
     </section>
   );
 }
