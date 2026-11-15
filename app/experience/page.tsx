@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 import Image from "next/image";
 import { PageHeading } from "@/components/page-heading";
 import { experience } from "@/content/experience";
@@ -8,10 +8,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Experience",
   description:
-    "Shivam Vyas's work history — Senior Software Engineer with 4 years in fintech and payments, Java, Spring Boot.",
+    "Shivam Vyas's work history: Senior Software Engineer at Techwave, previously Senior Systems Engineer at Infosys, building backend systems with Java and Spring Boot.",
   path: "/experience/",
 });
-
 export default function ExperiencePage() {
   return (
     <section aria-labelledby="experience-heading">
@@ -33,7 +32,7 @@ export default function ExperiencePage() {
                 alt={job.company}
                 width={job.logo.width}
                 height={job.logo.height}
-                className="logo-invert h-5 w-auto"
+                className={`logo-invert w-auto ${job.logo.className}`}
               />
             </a>
             <p className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[0.95rem]">
@@ -41,6 +40,10 @@ export default function ExperiencePage() {
               <span className="inline-flex items-center gap-1.5 font-mono text-[0.82rem] text-muted-foreground tabular-nums">
                 <CalendarDays aria-hidden="true" strokeWidth={1.75} className="size-3.5" />
                 {job.period}
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-mono text-[0.82rem] text-muted-foreground">
+                <MapPin aria-hidden="true" strokeWidth={1.75} className="size-3.5" />
+                {job.location}
               </span>
             </p>
             <ul className="flex list-disc flex-col gap-1.5 pl-[1.1rem] text-[0.95rem] leading-[1.7] marker:text-muted-foreground">
