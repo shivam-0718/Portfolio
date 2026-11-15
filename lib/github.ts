@@ -1,9 +1,11 @@
 import type { Project } from "@/content/projects";
 
+// `percent` is missing for the fallback (GitHub unreachable, or a folder inside a repo).
+export type LanguageShare = { name: string; percent?: number };
+
 export type RepoStats = {
-  language: string;
+  languages: LanguageShare[];
   updated?: string;
-  stars?: number;
 };
 
 // GitHub's own linguist colours, so the dots match what visitors see on GitHub.
@@ -35,21 +37,33 @@ async function gh<T>(path: string): Promise<T | undefined> {
   }
 }
 
-type Repo = { language: string | null; stargazers_count: number; pushed_at: string };
+type Repo = { pushed_at: string };
 type Commit = { commit: { committer: { date: string } } };
 
+// GitHub returns bytes per language; turn them into shares like the bar on a repo page.
+function toShares(bytes: Record<string, number> | undefined): LanguageShare[] | undefined {
+  const entries = Object.entries(bytes ?? {});
+  const total = entries.reduce((sum, [, n]) => sum + n, 0);
+  if (!total) return undefined;
+  return entries
+    .sort(([, a], [, b]) => b - a)
+    .map(([name, n]) => ({ name, percent: (n / total) * 100 }));
+}
+
 export async function getRepoStats(project: Project): Promise<RepoStats> {
+  const fallback = [{ name: project.language }];
+
+  // GitHub only reports languages per repo, so a folder shows its curated language.
   if (project.path) {
     const commits = await gh<Commit[]>(
       `repos/${project.repo}/commits?path=${encodeURIComponent(project.path)}&per_page=1`,
     );
-    return { language: project.language, updated: commits?.[0]?.commit.committer.date };
+    return { languages: fallback, updated: commits?.[0]?.commit.committer.date };
   }
 
-  const repo = await gh<Repo>(`repos/${project.repo}`);
-  return {
-    language: repo?.language ?? project.language,
-    updated: repo?.pushed_at,
-    stars: repo?.stargazers_count,
-  };
+  const [repo, languages] = await Promise.all([
+    gh<Repo>(`repos/${project.repo}`),
+    gh<Record<string, number>>(`repos/${project.repo}/languages`),
+  ]);
+  return { languages: toShares(languages) ?? fallback, updated: repo?.pushed_at };
 }
