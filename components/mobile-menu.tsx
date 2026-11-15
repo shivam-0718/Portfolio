@@ -12,6 +12,7 @@ import { MenuIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SocialIcon } from "@/components/icons";
+import { ResumeDownload } from "@/components/resume-download";
 import { navItems, socials } from "@/content/site";
 import { isActive } from "@/lib/is-active";
 
@@ -60,6 +61,7 @@ export function MobileMenu() {
             </ul>
           </nav>
           <div className="mt-auto flex items-center gap-4 border-t border-sidebar-border pt-5">
+            <ResumeDownload variant="menu" />
             {socials.map((social) => (
               <a
                 key={social.name}

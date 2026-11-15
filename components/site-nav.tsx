@@ -10,6 +10,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Monogram, SocialIcon } from "@/components/icons";
 import { MobileMenu } from "@/components/mobile-menu";
+import { ResumeDownload } from "@/components/resume-download";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { navItems, site, socials } from "@/content/site";
 import { isActive } from "@/lib/is-active";
@@ -59,6 +60,7 @@ export function SiteNav() {
 
           <div className="flex items-center gap-3 md:gap-2">
             <div className="hidden items-center gap-2 md:flex">
+              <ResumeDownload variant="icon" />
               {socials.map((social) => (
                 <a
                   key={social.name}
