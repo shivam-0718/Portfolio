@@ -10,15 +10,18 @@ Personal portfolio website. Next.js (App Router, TypeScript), Tailwind CSS v4 an
 
 | Route | Description |
 |---|---|
-| `/` | About — bio and profile photo |
+| `/` | About — bio, profile photo and skills |
 | `/experience/` | Work history at Techwave and Infosys |
 | `/thoughts/` | Writing (currently links out to Medium) |
-| `/projects/` | Side projects on GitHub |
+| `/projects/` | Projects on GitHub, with live languages and last update, newest first |
 
 ## Features
 
 - **Sticky top navbar** — nav links, resume download, socials and theme switch; on phones it collapses to a compact bar with a **Menu** drawer (ui-sdk `Drawer`)
-- **Dark mode** — ui-sdk `Switch`; persists via `localStorage`, defaults to `prefers-color-scheme`, no flash on load
+- **Resume download** — icon in the navbar and mobile menu, confirmed through a ui-sdk `AlertDialog`
+- **Skills** — capsules with brand logos, grouped by category, following light/dark mode
+- **Live projects** — languages and last update fetched from the GitHub API, refreshed daily
+- **Dark mode** — ui-sdk `Switch` with a cross-fade; persists via `localStorage`, defaults to `prefers-color-scheme`, no flash on load
 - **Agent-ready** — ui-sdk agent bridge registered over WebMCP, so browser agents can read the nav, switch the theme and open the menu
 - **SEO** — every page is static HTML with per-page title, description, canonical URL, OG/Twitter cards (a generated photo card at `/og.jpg`), schema.org JSON-LD, `sitemap.xml`, `robots.txt` and `/llms.txt` for AI answer engines
 - **Accessible** — skip link, visible focus rings, `aria-current` on the active page, reduced-motion support
@@ -44,17 +47,18 @@ npm test
 ## Project Structure
 
 ```
-app/            routes, root layout, globals.css, sitemap/robots, icon
-components/     site-nav, mobile-menu, theme-switch, agent-bridge, icons
-content/        site.ts, experience.ts, projects.ts, thoughts.ts (all page data)
-lib/            metadata helper, active-link helper
-public/         images/ (profile), assets/ (logos), resume.pdf
+app/            routes, root layout, globals.css, sitemap/robots, icon, og.jpg (share card), llms.txt
+components/     site-nav, mobile-menu, theme-switch, resume-download, skills, structured-data, agent-bridge, icons
+content/        site.ts, experience.ts, projects.ts, skills.ts, thoughts.ts (all page data)
+lib/            metadata helper, GitHub fetch, active-link helper
+public/         images/ (profile), assets/ (logos), skills/ (skill logos), resume.pdf
 test/           Vitest setup + agent test
 ```
 
 ## Updating Content
 
-- **Experience / projects / thoughts** — edit the typed arrays in `content/`.
+- **Experience / projects / skills / thoughts** — edit the typed arrays in `content/`.
+- **Resume** — replace `public/resume.pdf` (the public copy, without a phone number).
 - **About copy** — edit `app/page.tsx`.
 - **New page** — add `app/<route>/page.tsx` using `pageMetadata()` from `lib/metadata.ts`, and add it to `navItems` in `content/site.ts`.
 
@@ -64,6 +68,8 @@ test/           Vitest setup + agent test
 
 **Written content** — [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 © Shivam Vyas 2026. Free to share with attribution, not for commercial use.
+
+**Skill logos** — [skillicons.dev](https://skillicons.dev) (MIT), [Simple Icons](https://simpleicons.org) (CC0) and the [LangChain4j](https://github.com/langchain4j/langchain4j) logo; trademarks belong to their owners.
 
 ---
 
