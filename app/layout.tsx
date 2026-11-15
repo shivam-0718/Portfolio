@@ -3,7 +3,8 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { AgentBridge } from "@/components/agent-bridge";
 import { SiteNav } from "@/components/site-nav";
 import { site } from "@/content/site";
-import { pageMetadata } from "@/lib/metadata";
+import { StructuredData } from "@/components/structured-data";
+import { pageMetadata, titleSeparator } from "@/lib/metadata";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -21,13 +22,14 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const fullTitle = `${site.name} — ${site.role}`;
-
 export const metadata: Metadata = {
   ...pageMetadata({ path: "/" }),
   metadataBase: new URL(site.url),
-  title: { default: fullTitle, template: `%s — ${site.name}` },
+  title: { default: site.name, template: `%s${titleSeparator}${site.name}` },
+  applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
 };
 
 export const viewport: Viewport = {
@@ -36,6 +38,11 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
 };
+
+const credits = [
+  { name: "shud.in", href: "https://shud.in" },
+  { name: "paco.me", href: "https://paco.me" },
+];
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}})();`;
 
@@ -46,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <StructuredData />
       </head>
       <body className="flex min-h-dvh flex-col">
         <a
@@ -66,8 +74,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <footer className="mx-auto w-full max-w-3xl px-5 md:px-8">
-          <p className="border-t border-border pt-6 pb-8 text-[0.72rem] text-muted-foreground italic md:text-center">
-            Inspired from shud.in and paco.me · © {year} {site.name}
+          <p className="border-t border-border pt-6 pb-8 text-center text-[0.72rem] text-muted-foreground italic">
+            Inspired from{" "}
+            {credits.map((credit, i) => (
+              <span key={credit.href}>
+                {i > 0 && " and "}
+                <a
+                  href={credit.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${credit.name} (opens in new tab)`}
+                  className="text-muted-foreground underline decoration-muted-foreground/40 underline-offset-2 transition-colors hover:text-foreground hover:decoration-foreground"
+                >
+                  {credit.name}
+                </a>
+              </span>
+            ))}{" "}
+            · © {year} {site.name}
           </p>
         </footer>
 
