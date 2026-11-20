@@ -11,7 +11,7 @@ Personal portfolio website. Next.js (App Router, TypeScript), Tailwind CSS v4 an
 | Route | Description |
 |---|---|
 | `/` | About — bio, profile photo and skills |
-| `/experience/` | Work history at Techwave and Infosys |
+| `/experience/` | Work history |
 | `/thoughts/` | Writing (currently links out to Medium) |
 | `/projects/` | Projects on GitHub, with live languages and last update, newest first |
 
