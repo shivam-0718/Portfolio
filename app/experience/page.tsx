@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CalendarDays, MapPin } from "lucide-react";
 import Image from "next/image";
+import { breadcrumb, JsonLd } from "@/components/json-ld";
 import { PageHeading } from "@/components/page-heading";
 import { experience } from "@/content/experience";
 import { pageMetadata } from "@/lib/metadata";
@@ -8,12 +9,13 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Experience",
   description:
-    "Shivam Vyas's work history: Senior Software Engineer at Techwave, previously Senior Systems Engineer at Infosys, building backend systems with Java and Spring Boot.",
+    "Shivam Vyas is a Senior Software Engineer with 4+ years of experience building backend systems with Java and Spring Boot: microservices, REST APIs and distributed systems.",
   path: "/experience/",
 });
 export default function ExperiencePage() {
   return (
     <section aria-labelledby="experience-heading">
+      <JsonLd data={{ "@context": "https://schema.org", ...breadcrumb("Experience", "/experience/") }} />
       <PageHeading id="experience-heading" href="/experience/">
         Experience
       </PageHeading>

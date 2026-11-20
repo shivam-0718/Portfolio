@@ -1,11 +1,18 @@
-import { experience } from "@/content/experience";
+import { absolute, JsonLd, personId } from "@/components/json-ld";
+import { certifications, experience } from "@/content/experience";
 import { site, socials } from "@/content/site";
+import { skillGroups } from "@/content/skills";
 
-// schema.org JSON-LD on every page. Search engines and AI answer engines read it to tell
-// who the site is about. One Person node, referenced by @id from the WebSite and ProfilePage.
+// schema.org JSON-LD on every page: who the site is about (Person) and the site itself (WebSite).
+// Search engines and AI answer engines use it to connect the site, profiles and work history
+// to one person. Pages add their own nodes (ProfilePage, ItemList, BreadcrumbList) by @id.
 export function StructuredData() {
-  const personId = `${site.url}/#person`;
-  const [current, ...previous] = experience;
+  // Roles and dates only: employer names stay on the visible Experience page, not in metadata.
+  const occupations = experience.map((job) => ({
+    "@type": "Occupation",
+    name: job.role,
+    ...(job.end ? { description: `${job.start} to ${job.end}` } : { description: `Since ${job.start}` }),
+  }));
 
   const graph = {
     "@context": "https://schema.org",
@@ -14,39 +21,31 @@ export function StructuredData() {
         "@type": "Person",
         "@id": personId,
         name: site.name,
-        url: `${site.url}/`,
-        image: new URL(site.photo, site.url).toString(),
+        url: absolute("/"),
+        image: absolute(site.photo),
         jobTitle: site.role,
         description: site.description,
-        worksFor: { "@type": "Organization", name: current.company, url: current.url },
-        alumniOf: previous.map((job) => ({ "@type": "Organization", name: job.company, url: job.url })),
-        knowsAbout: site.skills,
+        hasOccupation: occupations.map((occupation) => ({ ...occupation, skills: site.skills.join(", ") })),
+        knowsAbout: skillGroups.flatMap((group) => group.skills.map((skill) => skill.name)),
+        hasCredential: certifications.map((cert) => ({
+          "@type": "EducationalOccupationalCredential",
+          name: cert.name,
+          recognizedBy: { "@type": "Organization", name: cert.issuer },
+          url: cert.url,
+        })),
         sameAs: [...socials.map((s) => s.href), site.medium],
       },
       {
         "@type": "WebSite",
         "@id": `${site.url}/#website`,
-        url: `${site.url}/`,
+        url: absolute("/"),
         name: site.name,
+        description: site.description,
         inLanguage: "en",
         publisher: { "@id": personId },
-      },
-      {
-        "@type": "ProfilePage",
-        "@id": `${site.url}/#profile`,
-        url: `${site.url}/`,
-        name: site.name,
-        isPartOf: { "@id": `${site.url}/#website` },
-        mainEntity: { "@id": personId },
       },
     ],
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      // Escape "<" so content can never close the script tag early.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }}
-    />
-  );
+  return <JsonLd data={graph} />;
 }

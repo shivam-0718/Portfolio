@@ -8,6 +8,9 @@ export type Experience = {
   role: string;
   location: string;
   period: string;
+  // ISO year-month for structured data; no `end` means current.
+  start: string;
+  end?: string;
   bullets: string[];
 };
 
@@ -19,6 +22,7 @@ export const experience: Experience[] = [
     role: "Senior Software Engineer",
     location: "Hyderabad, India",
     period: "Nov 2025 – Present",
+    start: "2025-11",
     bullets: [
       "Develop high-volume, event-driven backend services in Java and Spring Boot for a banking payments platform.",
       "Own end-to-end feature development for FPS, SWIFT MT103 and cross-border GBP payment flows, from design and implementation through to delivery.",
@@ -34,6 +38,8 @@ export const experience: Experience[] = [
     role: "Senior Systems Engineer",
     location: "Bengaluru, India",
     period: "Nov 2022 – Oct 2025",
+    start: "2022-11",
+    end: "2025-10",
     bullets: [
       "Developed Spring Boot microservices and RESTful APIs in Java and SQL for high-throughput enterprise backend systems, focused on reliability and data integrity.",
       "Managed MySQL database migrations and validated data across production environments.",
