@@ -22,7 +22,8 @@ export function SiteNav() {
   const onAbout = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md">
+    // Named so page transitions (globals.css) keep the header still while the content fades.
+    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md [view-transition-name:site-header]">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-3 md:h-16 md:px-8 md:py-0">
         {/* The About page's own heading is the name, so on desktop the bar shows the monogram instead. */}
         <Link

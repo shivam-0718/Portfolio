@@ -26,7 +26,10 @@ export function setTheme(theme: Theme) {
   // View Transitions API, and people who ask for reduced motion, get an instant switch.
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!document.startViewTransition || reduceMotion) return apply();
-  document.startViewTransition(apply);
+  // Marks this as a theme fade so the page-navigation rules in globals.css stay out of it.
+  const root = document.documentElement;
+  root.dataset.vt = "theme";
+  document.startViewTransition(apply).finished.finally(() => delete root.dataset.vt);
 }
 
 export function ThemeSwitch() {

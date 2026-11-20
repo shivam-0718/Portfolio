@@ -201,6 +201,57 @@
   }
 }
 
+/* Page navigation (app/template.tsx): the old page blurs out, then the new one blurs in,
+   like shud.in. The header stays put. Theme changes set data-vt="theme" on <html> and
+   use the plain cross-fade below instead, so these rules skip them. */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page) {
+  animation: 180ms ease-in both page-out;
+}
+
+::view-transition-new(.page) {
+  animation: 320ms ease-out 140ms both page-in;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+html:not([data-vt="theme"])::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+html:not([data-vt="theme"])::view-transition-old(site-header) {
+  display: none;
+}
+
+html:not([data-vt="theme"])::view-transition-new(site-header) {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 /* Theme change (components/theme-switch.tsx): the page cross-fades between themes.
    The switch is left out of the fade so its thumb slides live instead of fading. */
 ::view-transition-old(root),
