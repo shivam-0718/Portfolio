@@ -4,6 +4,45 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.1.0] — 2026-11-20
+
+**Previous:** v2.0.0
+
+### Summary
+
+A content and polish release: a refreshed About page with skills, resume download, a richer Projects page, article categories, smooth page transitions, and a working share preview, plus groundwork so search engines and AI answer engines describe the site correctly.
+
+### What's New
+
+- **About:** rewritten intro and story (generic, no employer or industry), a new photo, and skill capsules grouped by category with brand logos that follow light/dark mode.
+- **Resume download:** an icon in the navbar and the mobile menu that opens a confirmation dialog before downloading the PDF.
+- **Projects:**
+  - live language breakdown from GitHub, with a tech stack column and newest-first order;
+  - All / In progress / Completed tabs and 5 per page, both kept in the URL;
+  - Spring Boot Projects split into Customer Manager, Vaccine Manager and Weather Application.
+- **Thoughts:** All / Technology / Reflections tabs, with lighter shud.in-style rows.
+- **Experience:** matches the resume, with a location for each role.
+- **Transitions:** pages blur-fade between each other like shud.in, and the theme switch cross-fades. Both are instant with reduced motion.
+- **Share preview:** a new centred card (photo, name, role, skills) that still reads in WhatsApp's square thumbnail.
+- **SEO, AEO and GEO:**
+  - page titles ("Page · Shivam Vyas");
+  - structured data: Person, WebSite, ProfilePage, breadcrumbs, and project and article lists;
+  - `/llms.txt` and `/llms-full.txt`;
+  - AI crawlers explicitly allowed in `robots.txt`;
+  - factual page descriptions.
+
+### Changed
+
+- Footer centred on every screen size, with shud.in and paco.me as links.
+- Employer names now appear only on the visible Experience page, not in metadata.
+
+### Removed
+
+- Certifications list on the Experience page (it's in the resume).
+- Stars and start-date columns on Projects.
+
+---
+
 ## [v2.0.0] — 2026-11-13
 
 **Previous:** v1.2.0 · v1 is frozen on the `v1` branch.
