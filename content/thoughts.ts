@@ -1,30 +1,37 @@
 // An external entry links out (e.g. Medium). A hosted entry will render from
 // content/thoughts/<slug>.mdx once the blog moves onto the site.
+// `category` drives the All / Technology / Reflections tabs on /thoughts/.
+export type ThoughtCategory = "technology" | "reflection";
+
 export type Thought =
-  | { kind: "external"; title: string; date: string; url: string }
-  | { kind: "hosted"; title: string; date: string; slug: string; excerpt: string };
+  | { kind: "external"; category: ThoughtCategory; title: string; date: string; url: string }
+  | { kind: "hosted"; category: ThoughtCategory; title: string; date: string; slug: string; excerpt: string };
 
 const thoughts: Thought[] = [
   {
     kind: "external",
+    category: "technology",
     title: "Generative AI Decoded | Part 4 of 5",
     date: "2026-11-13",
     url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-4-of-5-f83432d1ab9a",
   },
   {
     kind: "external",
+    category: "technology",
     title: "Generative AI Decoded | Part 3 of 5",
     date: "2026-10-16",
     url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-3-of-5-9ef82e3c0fba",
   },
   {
     kind: "external",
+    category: "technology",
     title: "Generative AI Decoded | Part 2 of 5",
     date: "2026-08-08",
     url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-2-of-5-085c2df71834",
   },
   {
     kind: "external",
+    category: "technology",
     title: "Generative AI Decoded | Part 1 of 5",
     date: "2026-07-12",
     url: "https://medium.com/@svyas.1870/generative-ai-decoded-part-1-of-5-a87884bc7e77",
