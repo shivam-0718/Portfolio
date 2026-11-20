@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const PHOTO_WIDTH = 420;
+const PHOTO_SIZE = 200;
 
 // Dark-theme tokens from globals.css, as hex (the image renderer doesn't read CSS variables).
 const colors = {
@@ -39,7 +39,14 @@ async function plexSans(weight: 400 | 600) {
 
 async function photoDataUrl() {
   const source = await readFile(join(process.cwd(), "public", site.photo));
-  const resized = await sharp(source).resize(PHOTO_WIDTH, HEIGHT, { fit: "cover", position: "centre" }).jpeg().toBuffer();
+  // A square around the face (upper-middle of the 3:4 portrait), so head and shoulders fill the circle.
+  const { width = 900, height = 1200 } = await sharp(source).metadata();
+  const size = Math.round(width * 0.72);
+  const resized = await sharp(source)
+    .extract({ left: Math.round((width - size) / 2), top: Math.round(height * 0.12), width: size, height: size })
+    .resize(PHOTO_SIZE * 2, PHOTO_SIZE * 2)
+    .jpeg()
+    .toBuffer();
   return `data:image/jpeg;base64,${resized.toString("base64")}`;
 }
 
@@ -49,73 +56,65 @@ export async function GET() {
 
   const png = await new ImageResponse(
     (
+      // Everything is centred: WhatsApp and some other apps show a small square cropped from the
+      // middle (x 285–915), so the photo, name and role must sit inside that square.
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           width: "100%",
           height: "100%",
+          padding: "48px 60px 40px",
           background: colors.background,
           fontFamily: fonts.length ? "IBM Plex Sans" : undefined,
         }}
       >
-        <img src={photo} width={PHOTO_WIDTH} height={HEIGHT} style={{ objectFit: "cover" }} alt="" />
-
+        <img
+          src={photo}
+          width={PHOTO_SIZE}
+          height={PHOTO_SIZE}
+          style={{ borderRadius: 999, border: `4px solid ${colors.border}`, objectFit: "cover" }}
+          alt=""
+        />
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            padding: "60px 64px",
-            borderLeft: `1px solid ${colors.border}`,
+            marginTop: 26,
+            fontSize: 64,
+            fontWeight: 600,
+            color: colors.foreground,
+            letterSpacing: -1.5,
+            lineHeight: 1,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 999,
-              background: colors.foreground,
-              color: colors.background,
-              fontSize: 18,
-              fontWeight: 600,
-            }}
-          >
-            S.V.
-          </div>
+          {site.name}
+        </div>
+        <div style={{ marginTop: 14, fontSize: 30, color: colors.muted }}>{site.role}</div>
 
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "auto" }}>
-            <div style={{ fontSize: 68, fontWeight: 600, color: colors.foreground, letterSpacing: -1.5, lineHeight: 1.05 }}>
-              {site.name}
+        <div style={{ display: "flex", justifyContent: "center", gap: 10, marginTop: 30 }}>
+          {site.skills.map((skill) => (
+            <div
+              key={skill}
+              style={{
+                display: "flex",
+                padding: "6px 14px",
+                borderRadius: 999,
+                border: `1px solid ${colors.border}`,
+                color: colors.chip,
+                fontSize: 19,
+              }}
+            >
+              {skill}
             </div>
-            <div style={{ marginTop: 14, fontSize: 30, color: colors.muted }}>{site.role}</div>
+          ))}
+        </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 34 }}>
-              {site.skills.map((skill) => (
-                <div
-                  key={skill}
-                  style={{
-                    display: "flex",
-                    padding: "7px 14px",
-                    border: `1px solid ${colors.border}`,
-                    color: colors.chip,
-                    fontSize: 21,
-                  }}
-                >
-                  {skill}
-                </div>
-              ))}
-            </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: "auto" }}>
+          <div style={{ width: 28, height: 3, background: colors.link }} />
+          <div style={{ fontSize: 24, color: colors.link, fontWeight: 600 }}>
+            {new URL(site.url).hostname.replace(/^www\./, "")}
           </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 44 }}>
-            <div style={{ width: 28, height: 3, background: colors.link }} />
-            <div style={{ fontSize: 24, color: colors.link, fontWeight: 600 }}>
-              {new URL(site.url).hostname.replace(/^www\./, "")}
-            </div>
-          </div>
+          <div style={{ width: 28, height: 3, background: colors.link }} />
         </div>
       </div>
     ),

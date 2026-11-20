@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { absolute, JsonLd, personId } from "@/components/json-ld";
 import { Skills } from "@/components/skills";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -9,6 +10,18 @@ export const metadata: Metadata = pageMetadata({ path: "/" });
 export default function AboutPage() {
   return (
     <section aria-labelledby="about-heading" className="text-[0.95rem] leading-[1.75]">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "@id": `${site.url}/#profile`,
+          url: absolute("/"),
+          name: site.name,
+          description: site.description,
+          isPartOf: { "@id": `${site.url}/#website` },
+          mainEntity: { "@id": personId },
+        }}
+      />
       <h1 id="about-heading" className="mb-4 text-[1.75rem] leading-tight font-semibold tracking-tight">
         {site.name}
       </h1>
@@ -24,8 +37,8 @@ export default function AboutPage() {
           <Image
             src="/images/profile.jpeg"
             alt="Shivam Vyas, Senior Software Engineer"
-            width={1194}
-            height={1600}
+            width={900}
+            height={1200}
             priority
             sizes="(min-width: 768px) 220px, 280px"
             className="h-auto w-full rounded-lg border border-border bg-muted grayscale-[10%]"
