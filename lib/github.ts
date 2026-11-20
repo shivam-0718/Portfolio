@@ -8,16 +8,6 @@ export type RepoStats = {
   updated?: string;
 };
 
-// GitHub's own linguist colours, so the dots match what visitors see on GitHub.
-export const languageColors: Record<string, string> = {
-  Java: "#b07219",
-  TypeScript: "#3178c6",
-  JavaScript: "#f1e05a",
-  HTML: "#e34c26",
-  CSS: "#663399",
-  Python: "#3572a5",
-};
-
 const ONE_DAY = 60 * 60 * 24;
 
 async function gh<T>(path: string): Promise<T | undefined> {
